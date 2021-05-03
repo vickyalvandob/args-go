@@ -1,0 +1,1163 @@
+{
+    "variables": [],
+    "info": {
+        "name": "ARGS API",
+        "_postman_id": "be5d1e33-9733-4801-b426-1d6abc9948bd",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/login",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"necessitatibus\",\n    \"password\": \"explicabo\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Register",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/register",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"ratione\",\n    \"email\": \"quasi\",\n    \"username\": \"molestiae\",\n    \"password\": \"deserunt\",\n    \"password_confirmation\": \"minus\",\n    \"phone\": \"sit\",\n    \"zipcode\": \"modi\",\n    \"city\": \"aperiam\",\n    \"birth\": \"non\",\n    \"address\": \"blanditiis\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/logout",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Refresh a token.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/refresh",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Claim",
+            "description": "",
+            "item": [
+                {
+                    "name": "Claim Coin GAST Index\nGet data coin GAST user yang sudah di claim",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/coinClaim",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Claim Coin GAST Store\nRequest claim coin gast use coin ttg",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/coinClaim",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"amount\": 399224832.75,\n    \"note\": \"sint\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Reward Claim Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardClaim",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Claim Reward Store\n\nrequest claim Reward use coin ttg",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardClaim",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"reward_collect_id\": 286159460.034761,\n    \"qty\": 3135.0164442,\n    \"recipient_name\": 5413.161127981,\n    \"recipient_phone\": 1.8338082,\n    \"recipient_address\": 2098423.47705,\n    \"note\": \"et\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Claim Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzleClaim",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"amount\": 29.3,\n    \"qty\": 20\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Claim Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzleClaim",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"puzzle_collect_id\": 5,\n    \"recipient_name\": \"tempora\",\n    \"recipient_phone\": \"facere\",\n    \"recipient_address\": \"laboriosam\",\n    \"note\": \"sed\",\n    \"qty\": 2\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Collection",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get Collection\nambil data reward, coin, puzzle untuk di collect",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/collection",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Coin GAST Index\nGet data coin GAST user yang sudah di collection",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/coinCollect",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Coin GAST Store\nStore collection coin nya pake coin_id yg di dapet dari get collection.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/coinCollect",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"coin_id\": 4\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Reward Index\nGet data reward user yang sudah di collection",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardCollect",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Reward Store\nStore collection reward  pake reward_id yg di dapet dari get collection.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardCollect",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"reward_id\": 8\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Index\nget data puzzle yang telah ter combine dari pieces2 yg di collection",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzleCollect",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle  Store\nCombine pieces become full puzzle",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzleCollect",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"puzzle_id\": 15,\n    \"qty\": 19\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Piece Index\nget data pieece yang di collection",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzlePieceCollect",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Piece Store\ncollect pize puzzle dari get collection",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzlePieceCollect",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"puzzle_piece_id\": 13\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Energy Boost",
+            "description": "",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/energyBoost",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Store\nBoost enum[plus, minus] to update energy  until max or blank",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/energyBoost",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"type\": \"eligendi\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Mall",
+            "description": "",
+            "item": [
+                {
+                    "name": "reward Sells Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardSell",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Reward Sell Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardSell",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"reward_collect_id\": 20,\n    \"amount\": 17,\n    \"qty\": 2\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Reward Buys Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardBuy",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Reward Buy Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/rewardBuy",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"reward_collect_id\": 8,\n    \"amount\": 16,\n    \"qty\": 3\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Piece Sells Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzlePieceSell",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Piece Sells Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzlePieceSell",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"puzzle_piece_collect_id\": 10,\n    \"amount\": 117.1064,\n    \"qty\": 5\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Piece Buys Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzlePieceBuy",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Puzzle Piece Buy store\nBuy piece puzzle in mall",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/puzzlePieceBuy",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"puzzle_piece_sell_id\": 2,\n    \"qty\": 10\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Payout",
+            "description": "",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/payout",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/payout",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"amount\": 197269.9778,\n    \"note\": \"nihil\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Top Up",
+            "description": "",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/topUp",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/topUp",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"amount\": 2771584,\n    \"note\": \"vel\",\n    \"proof_image\": \"quia\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Transfer",
+            "description": "",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/transfer",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Store",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/transfer",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"corporis\",\n    \"amount\": 3.34,\n    \"type\": \"libero\",\n    \"note\": \"consequatur\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "description": "",
+            "item": [
+                {
+                    "name": "Index",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/profile",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/profile",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"molestiae\",\n    \"city\": \"non\",\n    \"zipcode\": \"dolor\",\n    \"phone\": \"doloremque\",\n    \"birth\": \"deserunt\",\n    \"address\": \"qui\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Change Password",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/password",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"old_password\": \"est\",\n    \"password\": \"magnam\",\n    \"password_confirmation\": \"quos\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "general",
+            "description": "",
+            "item": [
+                {
+                    "name": "General\nGeneral setting tax, charge, logo, etc.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "webmaster.test",
+                            "path": "api\/general",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        }
+    ]
+}
