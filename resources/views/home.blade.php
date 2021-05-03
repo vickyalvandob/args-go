@@ -4,7 +4,6 @@
 
 <div class="row">
     <div class="col-xl-4">
-te
         <div class="card-box">
             <div class="dropdown float-right">
                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
