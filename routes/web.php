@@ -11,11 +11,13 @@
 |
 */
 
+Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('loginbygoogle');
+Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Auth::routes();
 
 Route::get('/', 'HomeController@home')->name('home');
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $run = Artisan::call('config:clear');
     $run = Artisan::call('cache:clear');
     $run = Artisan::call('config:cache');
@@ -113,6 +115,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::resource('transfer', 'TransferController');
 });
 
-Route::get('citybyid/{id}',function($id){
-	return city($id);
+Route::get('citybyid/{id}', function ($id) {
+    return city($id);
 });
