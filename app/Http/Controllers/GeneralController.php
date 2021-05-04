@@ -48,8 +48,10 @@ class GeneralController extends Controller
     {
         $general = general::first();
         $general->title = $request->title;
+        $general->description = $request->description;
         $general->payout_tax = $request->payout_tax;
         $general->transfer_tax = $request->transfer_tax;
+        $general->transfer_ttg = $request->transfer_ttg;
         $general->topUp_tax = $request->topUp_tax;
         $general->energy_exchange = $request->energy_exchange;
         $general->energy_exchange_coin_gast = $request->energy_exchange_coin_gast;

@@ -82,8 +82,23 @@ class HomeController extends Controller
 
     public function dashboard()
     {
+        return Carbon::now()->subHours(1)->toDateTimeString();
 
-        $coin = coin::where('status','show')->inRandomOrder()->first();
+        $coinCollectCount = coinCollect::where('user_id',Auth::user()->id)->where('created_at', '>',Carbon::now()->subHours(1)->toDateTimeString())->count();
+        if($this->general->coin_hours >= $coinCollectCount){
+            $coin = coin::where('status','show')->inRandomOrder()->first();
+        }else{
+            $coin = null;
+        }
+
+
+        $puzzlePieceCollectCount = puzzlePieceCollect::where('created_at', '>',Carbon::now()->subHours(1)->toDateTimeString())->count();
+        if($this->general->puzzlePiece_hours >= $puzzlePieceCollectCount){
+            $puzzlePiece = puzzlePiece::where('status','show')->inRandomOrder()->first();
+        }else{
+            $puzzlePiece = null;
+        }
+
         $puzzlePiece = puzzlePiece::where('status','show')->inRandomOrder()->first();
         $reward = reward::where('status','show')->inRandomOrder()->first();
         $antagonist = antagonist::where('status','show')->inRandomOrder()->first();

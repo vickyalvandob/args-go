@@ -5,10 +5,19 @@ namespace App\Http\Controllers;
 use App\Transfer;
 use App\User;
 use Auth;
+use App\General;
 use Illuminate\Http\Request;
 
 class TransferController extends Controller
 {
+
+    protected $general;
+
+    public function __construct()
+    {
+        $this->general = general::first();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -70,8 +79,18 @@ class TransferController extends Controller
             'amount' => 'required|numeric'
         ]);
 
+
+
         $user = User::where('username', $request->username)->first();
         if ($user) {
+
+            if ($request->transfer_tax) {
+                $tax = $request->amount * ($this->general->transfer_tax / 100);
+            }else{
+                $tax = 0;
+            }
+            $energy = $request->amount * $this->general->energy_exchange;
+
             if ($request->type == 'ARGS') {
                 $user->balance = $user->balance + $request->amount;
             } elseif ($request->type == 'GAST') {
@@ -79,15 +98,18 @@ class TransferController extends Controller
             } elseif ($request->type == 'TTG') {
                 $user->coin_ttg = $user->coin_ttg + $request->amount;
             }
-            $user->energy = $user->energy + $request->amount;
-            $user->energy_quota = $user->energy_quota + $request->amount;
+
+            $user->energy = $user->energy + $energy;
+            $user->energy_quota = $user->energy_quota + $energy;
             $user->save();
 
             $transfer = new transfer;
-            $transfer->user_id = $user->id;
             $transfer->admin_id = Auth::guard('admin')->user()->id;
-            $transfer->amount = $request->amount;
+            $transfer->recipient_id = $user->id;
             $transfer->type = $request->type;
+            $transfer->amount = $request->amount - $tax;
+            $transfer->tax = $tax;
+            $transfer->energy = $energy;
             $transfer->note = $request->note;
             $transfer->save();
 

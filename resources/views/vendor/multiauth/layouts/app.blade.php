@@ -5,7 +5,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ $general->title }} | Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="{{ $general->title }}" name="description" />
+        <meta content="{{ $general->description }}" name="description" />
         <meta content="{{ $general->title }}" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -63,6 +63,7 @@
                         <br>
                         @include('multiauth::message')
                         <br>
+
                         @yield('content')
 
                     </div>

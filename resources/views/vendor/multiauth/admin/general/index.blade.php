@@ -63,6 +63,9 @@
                     <label>Social URL</label>
                     <input type="text" name="social" placeholder="Social URL" class="form-control" value="{{ $general->social }}">
                 </div>
+                <div class="form-group col-md-12">
+                    <label>DescriptionL</label>
+                    <textarea name="description" value="{{ $general->description }}" class="form-control" rows="4"></textarea>
                 <div class="form-group col-md-6">
                     <label>transfer tax</label>
                     <input type="text" name="transfer_tax" placeholder="transfer tax" class="form-control" value="{{ $general->transfer_tax }}">
@@ -88,8 +91,8 @@
                     <input type="text" name="energy_exchange" placeholder="energy exchange" class="form-control" value="{{ $general->energy_exchange }}">
                 </div>
                 <div class="form-group col-md-4">
-                    <label>energy exchange coin</label>
-                    <input type="text" name="energy_exchange_coin" placeholder="energy exchange coin" class="form-control" value="{{ $general->energy_exchange_coin }}">
+                    <label>energy exchange coin GAST</label>
+                    <input type="text" name="energy_exchange_coin_gast" placeholder="energy exchange coin" class="form-control" value="{{ $general->energy_exchange_coin_gast }}">
                 </div>
                 <div class="form-group col-md-4">
                     <label>boost percentage</label>

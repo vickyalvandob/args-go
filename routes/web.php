@@ -16,6 +16,7 @@ Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 Auth::routes();
 
 Route::get('/', 'HomeController@home')->name('home');
+Route::get('/mobile', 'MobileController@home')->name('mobile.home');
 
 Route::get('/clear-cache', function () {
     $run = Artisan::call('config:clear');
@@ -83,6 +84,63 @@ Route::prefix('user')->name('user.')->middleware('auth')->group(function () {
     Route::get('/payout', 'HomeController@payout_index')->name('payout.index');
     Route::post('/payout', 'HomeController@payout_store')->name('payout.store');
 });
+
+
+Route::prefix('mobile')->name('mobile.')->middleware('auth')->group(function () {
+    Route::get('/dashboard', 'MobileController@dashboard')->name('dashboard');
+    Route::get('/profile', 'MobileController@profile_index')->name('profile.index');
+    Route::post('/profile', 'MobileController@profile_update')->name('profile.update');
+    Route::get('/password', 'MobileController@password_index')->name('password.index');
+    Route::post('/password', 'MobileController@password_update')->name('password.update');
+    Route::get('/transfer', 'MobileController@transfer_index')->name('transfer.index');
+    Route::post('/transfer', 'MobileController@transfer_store')->name('transfer.store');
+
+    Route::get('/collection', 'MobileController@collection_index')->name('collection.index');
+    Route::get('/mall', 'MobileController@mall_index')->name('mall.index');
+
+    Route::get('/coinCollect', 'MobileController@coinCollect_index')->name('coinCollect.index');
+    Route::post('/coinCollect', 'MobileController@coinCollect_store')->name('coinCollect.store');
+    Route::get('/coinClaim', 'MobileController@coinClaim_index')->name('coinClaim.index');
+    Route::post('/coinClaim', 'MobileController@coinClaim_store')->name('coinClaim.store');
+
+    Route::get('/rewardCollect', 'MobileController@rewardCollect_index')->name('rewardCollect.index');
+    Route::post('/rewardCollect', 'MobileController@rewardCollect_store')->name('rewardCollect.store');
+    Route::get('/rewardSell', 'MobileController@rewardSell_index')->name('rewardSell.index');
+    Route::post('/rewardSell', 'MobileController@rewardSell_store')->name('rewardSell.store');
+    Route::get('/rewardClaim', 'MobileController@rewardClaim_index')->name('rewardClaim.index');
+    Route::post('/rewardClaim', 'MobileController@rewardClaim_store')->name('rewardClaim.store');
+    Route::get('/rewardBuy', 'MobileController@rewardBuy_index')->name('rewardBuy.index');
+    Route::post('/rewardBuy', 'MobileController@rewardBuy_store')->name('rewardBuy.store');
+
+    Route::get('/puzzleCollect', 'MobileController@puzzleCollect_index')->name('puzzleCollect.index');
+    Route::post('/puzzleCollect', 'MobileController@puzzleCollect_store')->name('puzzleCollect.store');
+    Route::get('/puzzleClaim', 'MobileController@puzzleClaim_index')->name('puzzleClaim.index');
+    Route::post('/puzzleClaim', 'MobileController@puzzleClaim_store')->name('puzzleClaim.store');
+    Route::get('/puzzlePieceCollect', 'MobileController@puzzlePieceCollect_index')->name('puzzlePieceCollect.index');
+    Route::post('/puzzlePieceCollect', 'MobileController@puzzlePieceCollect_store')->name('puzzlePieceCollect.store');
+    Route::get('/puzzlePieceSell', 'MobileController@puzzlePieceSell_index')->name('puzzlePieceSell.index');
+    Route::post('/puzzlePieceSell', 'MobileController@puzzlePieceSell_store')->name('puzzlePieceSell.store');
+    Route::get('/puzzlePieceBuy', 'MobileController@puzzlePieceBuy_index')->name('puzzlePieceBuy.index');
+    Route::post('/puzzlePieceBuy', 'MobileController@puzzlePieceBuy_store')->name('puzzlePieceBuy.store');
+
+    Route::get('/weapon', 'MobileController@weapon_index')->name('weapon.index');
+    Route::post('/weapon', 'MobileController@weapon_store')->name('weapon.store');
+    Route::get('/weaponCollect', 'MobileController@weaponCollect_index')->name('weaponCollect.index');
+    Route::post('/weaponCollect', 'MobileController@weaponCollect_store')->name('weaponCollect.store');
+    Route::get('/weaponBuy', 'MobileController@weaponBuy_index')->name('weaponBuy.index');
+    Route::post('/weaponBuy', 'MobileController@weaponBuy_store')->name('weaponBuy.store');
+    Route::get('/weaponAttack', 'MobileController@weaponAttack_index')->name('weaponAttack.index');
+    Route::post('/weaponAttack', 'MobileController@weaponAttack_store')->name('weaponAttack.store');
+
+    Route::get('/antagonistAttack', 'MobileController@antagonistAttack_index')->name('antagonistAttack.index');
+    Route::post('/antagonistAttack', 'MobileController@antagonistAttack_store')->name('antagonistAttack.store');
+
+    Route::get('/topUp', 'MobileController@topUp_index')->name('topUp.index');
+    Route::post('/topUp', 'MobileController@topUp_store')->name('topUp.store');
+    Route::get('/payout', 'MobileController@payout_index')->name('payout.index');
+    Route::post('/payout', 'MobileController@payout_store')->name('payout.store');
+});
+
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
     Route::resource('user', 'UserController');
