@@ -16,9 +16,121 @@ toc_footers:
 # Info
 
 Welcome to the generated API reference.
-[Get Postman Collection](http://webmaster.test/docs/collection.json)
+[Get Postman Collection](http://args.test/docs/collection.json)
 
 <!-- END_INFO -->
+
+#Antagonist
+
+
+<!-- START_ca791a8d56d907d832d3ad90a1f62285 -->
+## Antagonist Attack Index
+List of history antagonist attack
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://args.test/api/antagonistAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/antagonistAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "antagonistAttacks": "antagonistAttacks",
+    "message": "Info validation"
+}
+```
+
+### HTTP Request
+`GET api/antagonistAttack`
+
+
+<!-- END_ca791a8d56d907d832d3ad90a1f62285 -->
+
+<!-- START_4b291bc570e3526f3ca16ce801096bcd -->
+## Antagonist Attack
+user minus energy when antagonist attack
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X POST \
+    "http://args.test/api/antagonistAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"antagonist_id":20}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/antagonistAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "antagonist_id": 20
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "user": "update coin_ttg user",
+    "antagonist": "antagonist",
+    "antagonistAttack": "store query antagonistAttack",
+    "message": "Successfully"
+}
+```
+
+### HTTP Request
+`POST api/antagonistAttack`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `antagonist_id` | integer |  required  | 
+    
+<!-- END_4b291bc570e3526f3ca16ce801096bcd -->
 
 #Authentication
 
@@ -30,16 +142,16 @@ Welcome to the generated API reference.
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/login" \
+    "http://args.test/api/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"necessitatibus","password":"explicabo"}'
+    -d '{"username":"laboriosam","password":"et"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/login"
+    "http://args.test/api/login"
 );
 
 let headers = {
@@ -48,8 +160,8 @@ let headers = {
 };
 
 let body = {
-    "username": "necessitatibus",
-    "password": "explicabo"
+    "username": "laboriosam",
+    "password": "et"
 }
 
 fetch(url, {
@@ -115,16 +227,16 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/register" \
+    "http://args.test/api/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"ratione","email":"quasi","username":"molestiae","password":"deserunt","password_confirmation":"minus","phone":"sit","zipcode":"modi","city":"aperiam","birth":"non","address":"blanditiis"}'
+    -d '{"name":"cumque","email":"quia","username":"reiciendis","password":"sequi","password_confirmation":"ratione","phone":"voluptatum","zipcode":"nemo","city":"fugiat","birth":"ut","address":"non"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/register"
+    "http://args.test/api/register"
 );
 
 let headers = {
@@ -133,16 +245,16 @@ let headers = {
 };
 
 let body = {
-    "name": "ratione",
-    "email": "quasi",
-    "username": "molestiae",
-    "password": "deserunt",
-    "password_confirmation": "minus",
-    "phone": "sit",
-    "zipcode": "modi",
-    "city": "aperiam",
-    "birth": "non",
-    "address": "blanditiis"
+    "name": "cumque",
+    "email": "quia",
+    "username": "reiciendis",
+    "password": "sequi",
+    "password_confirmation": "ratione",
+    "phone": "voluptatum",
+    "zipcode": "nemo",
+    "city": "fugiat",
+    "birth": "ut",
+    "address": "non"
 }
 
 fetch(url, {
@@ -206,14 +318,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/logout" \
+    "http://args.test/api/logout" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/logout"
+    "http://args.test/api/logout"
 );
 
 let headers = {
@@ -255,14 +367,14 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/refresh" \
+    "http://args.test/api/refresh" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/refresh"
+    "http://args.test/api/refresh"
 );
 
 let headers = {
@@ -298,14 +410,14 @@ Get data coin GAST user yang sudah di claim
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/coinClaim" \
+    -G "http://args.test/api/coinClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/coinClaim"
+    "http://args.test/api/coinClaim"
 );
 
 let headers = {
@@ -345,16 +457,16 @@ Request claim coin gast use coin ttg
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/coinClaim" \
+    "http://args.test/api/coinClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":399224832.75,"note":"sint"}'
+    -d '{"amount":4570.7288643,"note":"vero"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/coinClaim"
+    "http://args.test/api/coinClaim"
 );
 
 let headers = {
@@ -363,8 +475,8 @@ let headers = {
 };
 
 let body = {
-    "amount": 399224832.75,
-    "note": "sint"
+    "amount": 4570.7288643,
+    "note": "vero"
 }
 
 fetch(url, {
@@ -405,14 +517,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/rewardClaim" \
+    -G "http://args.test/api/rewardClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardClaim"
+    "http://args.test/api/rewardClaim"
 );
 
 let headers = {
@@ -453,16 +565,16 @@ request claim Reward use coin ttg
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/rewardClaim" \
+    "http://args.test/api/rewardClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_collect_id":286159460.034761,"qty":3135.0164442,"recipient_name":5413.161127981,"recipient_phone":1.8338082,"recipient_address":2098423.47705,"note":"et"}'
+    -d '{"reward_collect_id":49.26,"qty":2569.8,"recipient_name":37716243.16960546,"recipient_phone":2646676.820948,"recipient_address":2.34,"note":"similique"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardClaim"
+    "http://args.test/api/rewardClaim"
 );
 
 let headers = {
@@ -471,12 +583,12 @@ let headers = {
 };
 
 let body = {
-    "reward_collect_id": 286159460.034761,
-    "qty": 3135.0164442,
-    "recipient_name": 5413.161127981,
-    "recipient_phone": 1.8338082,
-    "recipient_address": 2098423.47705,
-    "note": "et"
+    "reward_collect_id": 49.26,
+    "qty": 2569.8,
+    "recipient_name": 37716243.16960546,
+    "recipient_phone": 2646676.820948,
+    "recipient_address": 2.34,
+    "note": "similique"
 }
 
 fetch(url, {
@@ -523,16 +635,16 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/puzzleClaim" \
+    -G "http://args.test/api/puzzleClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":29.3,"qty":20}'
+    -d '{"amount":18774352.707421,"qty":18}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzleClaim"
+    "http://args.test/api/puzzleClaim"
 );
 
 let headers = {
@@ -541,8 +653,8 @@ let headers = {
 };
 
 let body = {
-    "amount": 29.3,
-    "qty": 20
+    "amount": 18774352.707421,
+    "qty": 18
 }
 
 fetch(url, {
@@ -582,16 +694,16 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/puzzleClaim" \
+    "http://args.test/api/puzzleClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_collect_id":5,"recipient_name":"tempora","recipient_phone":"facere","recipient_address":"laboriosam","note":"sed","qty":2}'
+    -d '{"puzzle_collect_id":4,"recipient_name":"quaerat","recipient_phone":"qui","recipient_address":"sint","note":"fuga","qty":9}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzleClaim"
+    "http://args.test/api/puzzleClaim"
 );
 
 let headers = {
@@ -600,12 +712,12 @@ let headers = {
 };
 
 let body = {
-    "puzzle_collect_id": 5,
-    "recipient_name": "tempora",
-    "recipient_phone": "facere",
-    "recipient_address": "laboriosam",
-    "note": "sed",
-    "qty": 2
+    "puzzle_collect_id": 4,
+    "recipient_name": "quaerat",
+    "recipient_phone": "qui",
+    "recipient_address": "sint",
+    "note": "fuga",
+    "qty": 9
 }
 
 fetch(url, {
@@ -656,14 +768,14 @@ ambil data reward, coin, puzzle untuk di collect
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/collection" \
+    -G "http://args.test/api/collection" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/collection"
+    "http://args.test/api/collection"
 );
 
 let headers = {
@@ -708,14 +820,14 @@ Get data coin GAST user yang sudah di collection
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/coinCollect" \
+    -G "http://args.test/api/coinCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/coinCollect"
+    "http://args.test/api/coinCollect"
 );
 
 let headers = {
@@ -756,16 +868,16 @@ Store collection coin nya pake coin_id yg di dapet dari get collection.
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/coinCollect" \
+    "http://args.test/api/coinCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"coin_id":4}'
+    -d '{"coin_id":13}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/coinCollect"
+    "http://args.test/api/coinCollect"
 );
 
 let headers = {
@@ -774,7 +886,7 @@ let headers = {
 };
 
 let body = {
-    "coin_id": 4
+    "coin_id": 13
 }
 
 fetch(url, {
@@ -816,14 +928,14 @@ Get data reward user yang sudah di collection
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/rewardCollect" \
+    -G "http://args.test/api/rewardCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardCollect"
+    "http://args.test/api/rewardCollect"
 );
 
 let headers = {
@@ -865,16 +977,16 @@ Store collection reward  pake reward_id yg di dapet dari get collection.
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/rewardCollect" \
+    "http://args.test/api/rewardCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_id":8}'
+    -d '{"reward_id":9}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardCollect"
+    "http://args.test/api/rewardCollect"
 );
 
 let headers = {
@@ -883,7 +995,7 @@ let headers = {
 };
 
 let body = {
-    "reward_id": 8
+    "reward_id": 9
 }
 
 fetch(url, {
@@ -925,14 +1037,14 @@ get data puzzle yang telah ter combine dari pieces2 yg di collection
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/puzzleCollect" \
+    -G "http://args.test/api/puzzleCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzleCollect"
+    "http://args.test/api/puzzleCollect"
 );
 
 let headers = {
@@ -974,16 +1086,16 @@ Combine pieces become full puzzle
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/puzzleCollect" \
+    "http://args.test/api/puzzleCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_id":15,"qty":19}'
+    -d '{"puzzle_id":8,"qty":8}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzleCollect"
+    "http://args.test/api/puzzleCollect"
 );
 
 let headers = {
@@ -992,8 +1104,8 @@ let headers = {
 };
 
 let body = {
-    "puzzle_id": 15,
-    "qty": 19
+    "puzzle_id": 8,
+    "qty": 8
 }
 
 fetch(url, {
@@ -1038,14 +1150,14 @@ get data pieece yang di collection
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/puzzlePieceCollect" \
+    -G "http://args.test/api/puzzlePieceCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzlePieceCollect"
+    "http://args.test/api/puzzlePieceCollect"
 );
 
 let headers = {
@@ -1087,16 +1199,16 @@ collect pize puzzle dari get collection
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/puzzlePieceCollect" \
+    "http://args.test/api/puzzlePieceCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_piece_id":13}'
+    -d '{"puzzle_piece_id":12}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzlePieceCollect"
+    "http://args.test/api/puzzlePieceCollect"
 );
 
 let headers = {
@@ -1105,7 +1217,7 @@ let headers = {
 };
 
 let body = {
-    "puzzle_piece_id": 13
+    "puzzle_piece_id": 12
 }
 
 fetch(url, {
@@ -1150,14 +1262,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/energyBoost" \
+    -G "http://args.test/api/energyBoost" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/energyBoost"
+    "http://args.test/api/energyBoost"
 );
 
 let headers = {
@@ -1197,16 +1309,16 @@ Boost enum[plus, minus] to update energy  until max or blank
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/energyBoost" \
+    "http://args.test/api/energyBoost" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"type":"eligendi"}'
+    -d '{"type":"quos"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/energyBoost"
+    "http://args.test/api/energyBoost"
 );
 
 let headers = {
@@ -1215,7 +1327,7 @@ let headers = {
 };
 
 let body = {
-    "type": "eligendi"
+    "type": "quos"
 }
 
 fetch(url, {
@@ -1258,14 +1370,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/rewardSell" \
+    -G "http://args.test/api/rewardSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardSell"
+    "http://args.test/api/rewardSell"
 );
 
 let headers = {
@@ -1305,16 +1417,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/rewardSell" \
+    "http://args.test/api/rewardSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_collect_id":20,"amount":17,"qty":2}'
+    -d '{"reward_collect_id":19,"amount":20,"qty":13}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardSell"
+    "http://args.test/api/rewardSell"
 );
 
 let headers = {
@@ -1323,9 +1435,9 @@ let headers = {
 };
 
 let body = {
-    "reward_collect_id": 20,
-    "amount": 17,
-    "qty": 2
+    "reward_collect_id": 19,
+    "amount": 20,
+    "qty": 13
 }
 
 fetch(url, {
@@ -1368,14 +1480,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/rewardBuy" \
+    -G "http://args.test/api/rewardBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardBuy"
+    "http://args.test/api/rewardBuy"
 );
 
 let headers = {
@@ -1415,16 +1527,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/rewardBuy" \
+    "http://args.test/api/rewardBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_collect_id":8,"amount":16,"qty":3}'
+    -d '{"reward_collect_id":9,"amount":16,"qty":7}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/rewardBuy"
+    "http://args.test/api/rewardBuy"
 );
 
 let headers = {
@@ -1433,9 +1545,9 @@ let headers = {
 };
 
 let body = {
-    "reward_collect_id": 8,
+    "reward_collect_id": 9,
     "amount": 16,
-    "qty": 3
+    "qty": 7
 }
 
 fetch(url, {
@@ -1480,14 +1592,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/puzzlePieceSell" \
+    -G "http://args.test/api/puzzlePieceSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzlePieceSell"
+    "http://args.test/api/puzzlePieceSell"
 );
 
 let headers = {
@@ -1527,16 +1639,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/puzzlePieceSell" \
+    "http://args.test/api/puzzlePieceSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_piece_collect_id":10,"amount":117.1064,"qty":5}'
+    -d '{"puzzle_piece_collect_id":4,"amount":10.938522678,"qty":9}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzlePieceSell"
+    "http://args.test/api/puzzlePieceSell"
 );
 
 let headers = {
@@ -1545,9 +1657,9 @@ let headers = {
 };
 
 let body = {
-    "puzzle_piece_collect_id": 10,
-    "amount": 117.1064,
-    "qty": 5
+    "puzzle_piece_collect_id": 4,
+    "amount": 10.938522678,
+    "qty": 9
 }
 
 fetch(url, {
@@ -1590,14 +1702,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/puzzlePieceBuy" \
+    -G "http://args.test/api/puzzlePieceBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzlePieceBuy"
+    "http://args.test/api/puzzlePieceBuy"
 );
 
 let headers = {
@@ -1638,16 +1750,16 @@ Buy piece puzzle in mall
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/puzzlePieceBuy" \
+    "http://args.test/api/puzzlePieceBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_piece_sell_id":2,"qty":10}'
+    -d '{"puzzle_piece_sell_id":1,"qty":11}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/puzzlePieceBuy"
+    "http://args.test/api/puzzlePieceBuy"
 );
 
 let headers = {
@@ -1656,8 +1768,8 @@ let headers = {
 };
 
 let body = {
-    "puzzle_piece_sell_id": 2,
-    "qty": 10
+    "puzzle_piece_sell_id": 1,
+    "qty": 11
 }
 
 fetch(url, {
@@ -1704,14 +1816,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/payout" \
+    -G "http://args.test/api/payout" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/payout"
+    "http://args.test/api/payout"
 );
 
 let headers = {
@@ -1750,16 +1862,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/payout" \
+    "http://args.test/api/payout" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":197269.9778,"note":"nihil"}'
+    -d '{"amount":41064086.6331,"note":"quia"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/payout"
+    "http://args.test/api/payout"
 );
 
 let headers = {
@@ -1768,8 +1880,8 @@ let headers = {
 };
 
 let body = {
-    "amount": 197269.9778,
-    "note": "nihil"
+    "amount": 41064086.6331,
+    "note": "quia"
 }
 
 fetch(url, {
@@ -1813,14 +1925,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/topUp" \
+    -G "http://args.test/api/topUp" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/topUp"
+    "http://args.test/api/topUp"
 );
 
 let headers = {
@@ -1859,16 +1971,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/topUp" \
+    "http://args.test/api/topUp" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":2771584,"note":"vel","proof_image":"quia"}'
+    -d '{"amount":13131740.99721,"note":"quas","proof_image":"optio"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/topUp"
+    "http://args.test/api/topUp"
 );
 
 let headers = {
@@ -1877,9 +1989,9 @@ let headers = {
 };
 
 let body = {
-    "amount": 2771584,
-    "note": "vel",
-    "proof_image": "quia"
+    "amount": 13131740.99721,
+    "note": "quas",
+    "proof_image": "optio"
 }
 
 fetch(url, {
@@ -1923,14 +2035,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/transfer" \
+    -G "http://args.test/api/transfer" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/transfer"
+    "http://args.test/api/transfer"
 );
 
 let headers = {
@@ -1969,16 +2081,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/transfer" \
+    "http://args.test/api/transfer" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"corporis","amount":3.34,"type":"libero","note":"consequatur"}'
+    -d '{"username":"aut","amount":3945.63122626,"type":"dolore","note":"aliquid"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/transfer"
+    "http://args.test/api/transfer"
 );
 
 let headers = {
@@ -1987,10 +2099,10 @@ let headers = {
 };
 
 let body = {
-    "username": "corporis",
-    "amount": 3.34,
-    "type": "libero",
-    "note": "consequatur"
+    "username": "aut",
+    "amount": 3945.63122626,
+    "type": "dolore",
+    "note": "aliquid"
 }
 
 fetch(url, {
@@ -2037,14 +2149,14 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/profile" \
+    -G "http://args.test/api/profile" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/profile"
+    "http://args.test/api/profile"
 );
 
 let headers = {
@@ -2083,16 +2195,16 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/profile" \
+    "http://args.test/api/profile" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"molestiae","city":"non","zipcode":"dolor","phone":"doloremque","birth":"deserunt","address":"qui"}'
+    -d '{"name":"enim","city":"soluta","zipcode":"quis","phone":"ab","birth":"quod","address":"at"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/profile"
+    "http://args.test/api/profile"
 );
 
 let headers = {
@@ -2101,12 +2213,12 @@ let headers = {
 };
 
 let body = {
-    "name": "molestiae",
-    "city": "non",
-    "zipcode": "dolor",
-    "phone": "doloremque",
-    "birth": "deserunt",
-    "address": "qui"
+    "name": "enim",
+    "city": "soluta",
+    "zipcode": "quis",
+    "phone": "ab",
+    "birth": "quod",
+    "address": "at"
 }
 
 fetch(url, {
@@ -2150,16 +2262,16 @@ Parameter | Type | Status | Description
 
 ```bash
 curl -X POST \
-    "http://webmaster.test/api/password" \
+    "http://args.test/api/password" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"old_password":"est","password":"magnam","password_confirmation":"quos"}'
+    -d '{"old_password":"debitis","password":"eos","password_confirmation":"facilis"}'
 
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/password"
+    "http://args.test/api/password"
 );
 
 let headers = {
@@ -2168,9 +2280,9 @@ let headers = {
 };
 
 let body = {
-    "old_password": "est",
-    "password": "magnam",
-    "password_confirmation": "quos"
+    "old_password": "debitis",
+    "password": "eos",
+    "password_confirmation": "facilis"
 }
 
 fetch(url, {
@@ -2203,6 +2315,326 @@ Parameter | Type | Status | Description
     
 <!-- END_227fd7c494cbc54bc5deecfc352a82a8 -->
 
+#Weapon
+
+
+<!-- START_053aedf5069d66796e230b9bb3fc9fb5 -->
+## List Weapon Mall
+list of weapon in mall
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://args.test/api/weapon" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/weapon"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "weapons": "weapons"
+}
+```
+
+### HTTP Request
+`GET api/weapon`
+
+
+<!-- END_053aedf5069d66796e230b9bb3fc9fb5 -->
+
+<!-- START_20faeab025242acc8559c3bc665a234f -->
+## Weapon User
+list of weapon purchase user
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://args.test/api/weaponCollect" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/weaponCollect"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "weaponCollects": "weaponCollects"
+}
+```
+
+### HTTP Request
+`GET api/weaponCollect`
+
+
+<!-- END_20faeab025242acc8559c3bc665a234f -->
+
+<!-- START_5d2199c4af88f0d817e03f18eac786f1 -->
+## Weapon Buy Index
+List of history purchase weapon in mall
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://args.test/api/weaponBuy" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/weaponBuy"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "weaponBuys": "weaponBuys",
+    "message": "Info validation"
+}
+```
+
+### HTTP Request
+`GET api/weaponBuy`
+
+
+<!-- END_5d2199c4af88f0d817e03f18eac786f1 -->
+
+<!-- START_194a00d0622ec1912c7a7e839fe770f1 -->
+## Weapon Buy Store
+store purchase weapon in mall
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X POST \
+    "http://args.test/api/weaponBuy" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"weapon_id":12,"qty":20}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/weaponBuy"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "weapon_id": 12,
+    "qty": 20
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "user": "update minus coin_ttg user",
+    "weaponCollect": "update plus qty puzzleCollect",
+    "weaponBuy": "store query weaponBuy",
+    "message": "Purchase weapon"
+}
+```
+
+### HTTP Request
+`POST api/weaponBuy`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `weapon_id` | integer |  required  | 
+        `qty` | integer |  required  | 
+    
+<!-- END_194a00d0622ec1912c7a7e839fe770f1 -->
+
+<!-- START_fb832036c0ddc4c7adac1ad85284c4f7 -->
+## Weapon Attack Index
+list of weapon attack history
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://args.test/api/weaponAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/weaponAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "weaponAttacks": "weaponAttacks"
+}
+```
+
+### HTTP Request
+`GET api/weaponAttack`
+
+
+<!-- END_fb832036c0ddc4c7adac1ad85284c4f7 -->
+
+<!-- START_255d39df3a4b51f5f67cb58fa3012eac -->
+## Weapon Attack Store
+Store attack antaginist with weapon
+
+<br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
+> Example request:
+
+```bash
+curl -X POST \
+    "http://args.test/api/weaponAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"weapon_collect_id":8,"qty":14,"antagonist_id":5}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://args.test/api/weaponAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "weapon_collect_id": 8,
+    "qty": 14,
+    "antagonist_id": 5
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "weaponCollect": "weaponCollect",
+    "antagonist": "antagonist",
+    "weaponAttack": "weaponAttack",
+    "message": "Info validation"
+}
+```
+
+### HTTP Request
+`POST api/weaponAttack`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `weapon_collect_id` | integer |  required  | 
+        `qty` | integer |  required  | 
+        `antagonist_id` | integer |  required  | 
+    
+<!-- END_255d39df3a4b51f5f67cb58fa3012eac -->
+
 #general
 
 
@@ -2215,14 +2647,14 @@ General setting tax, charge, logo, etc.
 
 ```bash
 curl -X GET \
-    -G "http://webmaster.test/api/general" \
+    -G "http://args.test/api/general" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://webmaster.test/api/general"
+    "http://args.test/api/general"
 );
 
 let headers = {

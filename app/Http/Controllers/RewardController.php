@@ -27,7 +27,7 @@ class RewardController extends Controller
      */
     public function index()
     {
-        $rewards = reward::orderBy('id', 'DESC')->get();
+        $rewards = reward::orderBy('id', 'DESC')->paginate(5);
         return view('multiauth::admin.reward.index', compact('rewards'));
     }
 
@@ -57,6 +57,7 @@ class RewardController extends Controller
         $reward = new reward;
         $reward->title = $request->title;
         $reward->amount = $request->amount;
+        $reward->qty = $request->qty;
         $reward->energy = $request->energy;
         if($request->file('image')){
             $image = $request->file('image');
@@ -108,6 +109,7 @@ class RewardController extends Controller
 
         $reward = reward::find($id);
         $reward->title = $request->title;
+        $reward->qty = $request->qty;
         $reward->amount = $request->amount;
         $reward->energy = $request->energy;
         if($request->file('image')){

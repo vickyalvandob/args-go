@@ -49,22 +49,60 @@
           <!-- START_INFO -->
 <h1>Info</h1>
 <p>Welcome to the generated API reference.
-<a href="http://webmaster.test/docs/collection.json">Get Postman Collection</a></p>
+<a href="http://args.test/docs/collection.json">Get Postman Collection</a></p>
 <!-- END_INFO -->
-<h1>Authentication</h1>
-<!-- START_c3fa189a6c95ca36ad6ac4791a873d23 -->
-<h2>Login</h2>
+<h1>Antagonist</h1>
+<!-- START_ca791a8d56d907d832d3ad90a1f62285 -->
+<h2>Antagonist Attack Index</h2>
+<p>List of history antagonist attack</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://args.test/api/antagonistAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/antagonistAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "antagonistAttacks": "antagonistAttacks",
+    "message": "Info validation"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/antagonistAttack</code></p>
+<!-- END_ca791a8d56d907d832d3ad90a1f62285 -->
+<!-- START_4b291bc570e3526f3ca16ce801096bcd -->
+<h2>Antagonist Attack</h2>
+<p>user minus energy when antagonist attack</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
 <blockquote>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/login" \
+    "http://args.test/api/antagonistAttack" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"necessitatibus","password":"explicabo"}'
+    -d '{"antagonist_id":20}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/login"
+    "http://args.test/api/antagonistAttack"
 );
 
 let headers = {
@@ -73,8 +111,70 @@ let headers = {
 };
 
 let body = {
-    "username": "necessitatibus",
-    "password": "explicabo"
+    "antagonist_id": 20
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "user": "update coin_ttg user",
+    "antagonist": "antagonist",
+    "antagonistAttack": "store query antagonistAttack",
+    "message": "Successfully"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/antagonistAttack</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>antagonist_id</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_4b291bc570e3526f3ca16ce801096bcd -->
+<h1>Authentication</h1>
+<!-- START_c3fa189a6c95ca36ad6ac4791a873d23 -->
+<h2>Login</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://args.test/api/login" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"username":"laboriosam","password":"et"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "username": "laboriosam",
+    "password": "et"
 }
 
 fetch(url, {
@@ -149,13 +249,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/register" \
+    "http://args.test/api/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"ratione","email":"quasi","username":"molestiae","password":"deserunt","password_confirmation":"minus","phone":"sit","zipcode":"modi","city":"aperiam","birth":"non","address":"blanditiis"}'
+    -d '{"name":"cumque","email":"quia","username":"reiciendis","password":"sequi","password_confirmation":"ratione","phone":"voluptatum","zipcode":"nemo","city":"fugiat","birth":"ut","address":"non"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/register"
+    "http://args.test/api/register"
 );
 
 let headers = {
@@ -164,16 +264,16 @@ let headers = {
 };
 
 let body = {
-    "name": "ratione",
-    "email": "quasi",
-    "username": "molestiae",
-    "password": "deserunt",
-    "password_confirmation": "minus",
-    "phone": "sit",
-    "zipcode": "modi",
-    "city": "aperiam",
-    "birth": "non",
-    "address": "blanditiis"
+    "name": "cumque",
+    "email": "quia",
+    "username": "reiciendis",
+    "password": "sequi",
+    "password_confirmation": "ratione",
+    "phone": "voluptatum",
+    "zipcode": "nemo",
+    "city": "fugiat",
+    "birth": "ut",
+    "address": "non"
 }
 
 fetch(url, {
@@ -278,11 +378,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/logout" \
+    "http://args.test/api/logout" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/logout"
+    "http://args.test/api/logout"
 );
 
 let headers = {
@@ -315,11 +415,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/refresh" \
+    "http://args.test/api/refresh" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/refresh"
+    "http://args.test/api/refresh"
 );
 
 let headers = {
@@ -345,11 +445,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/coinClaim" \
+    -G "http://args.test/api/coinClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/coinClaim"
+    "http://args.test/api/coinClaim"
 );
 
 let headers = {
@@ -380,13 +480,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/coinClaim" \
+    "http://args.test/api/coinClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":399224832.75,"note":"sint"}'
+    -d '{"amount":4570.7288643,"note":"vero"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/coinClaim"
+    "http://args.test/api/coinClaim"
 );
 
 let headers = {
@@ -395,8 +495,8 @@ let headers = {
 };
 
 let body = {
-    "amount": 399224832.75,
-    "note": "sint"
+    "amount": 4570.7288643,
+    "note": "vero"
 }
 
 fetch(url, {
@@ -447,11 +547,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/rewardClaim" \
+    -G "http://args.test/api/rewardClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardClaim"
+    "http://args.test/api/rewardClaim"
 );
 
 let headers = {
@@ -482,13 +582,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/rewardClaim" \
+    "http://args.test/api/rewardClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_collect_id":286159460.034761,"qty":3135.0164442,"recipient_name":5413.161127981,"recipient_phone":1.8338082,"recipient_address":2098423.47705,"note":"et"}'
+    -d '{"reward_collect_id":49.26,"qty":2569.8,"recipient_name":37716243.16960546,"recipient_phone":2646676.820948,"recipient_address":2.34,"note":"similique"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardClaim"
+    "http://args.test/api/rewardClaim"
 );
 
 let headers = {
@@ -497,12 +597,12 @@ let headers = {
 };
 
 let body = {
-    "reward_collect_id": 286159460.034761,
-    "qty": 3135.0164442,
-    "recipient_name": 5413.161127981,
-    "recipient_phone": 1.8338082,
-    "recipient_address": 2098423.47705,
-    "note": "et"
+    "reward_collect_id": 49.26,
+    "qty": 2569.8,
+    "recipient_name": 37716243.16960546,
+    "recipient_phone": 2646676.820948,
+    "recipient_address": 2.34,
+    "note": "similique"
 }
 
 fetch(url, {
@@ -575,13 +675,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/puzzleClaim" \
+    -G "http://args.test/api/puzzleClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":29.3,"qty":20}'
+    -d '{"amount":18774352.707421,"qty":18}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzleClaim"
+    "http://args.test/api/puzzleClaim"
 );
 
 let headers = {
@@ -590,8 +690,8 @@ let headers = {
 };
 
 let body = {
-    "amount": 29.3,
-    "qty": 20
+    "amount": 18774352.707421,
+    "qty": 18
 }
 
 fetch(url, {
@@ -640,13 +740,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/puzzleClaim" \
+    "http://args.test/api/puzzleClaim" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_collect_id":5,"recipient_name":"tempora","recipient_phone":"facere","recipient_address":"laboriosam","note":"sed","qty":2}'
+    -d '{"puzzle_collect_id":4,"recipient_name":"quaerat","recipient_phone":"qui","recipient_address":"sint","note":"fuga","qty":9}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzleClaim"
+    "http://args.test/api/puzzleClaim"
 );
 
 let headers = {
@@ -655,12 +755,12 @@ let headers = {
 };
 
 let body = {
-    "puzzle_collect_id": 5,
-    "recipient_name": "tempora",
-    "recipient_phone": "facere",
-    "recipient_address": "laboriosam",
-    "note": "sed",
-    "qty": 2
+    "puzzle_collect_id": 4,
+    "recipient_name": "quaerat",
+    "recipient_phone": "qui",
+    "recipient_address": "sint",
+    "note": "fuga",
+    "qty": 9
 }
 
 fetch(url, {
@@ -734,11 +834,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/collection" \
+    -G "http://args.test/api/collection" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/collection"
+    "http://args.test/api/collection"
 );
 
 let headers = {
@@ -774,11 +874,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/coinCollect" \
+    -G "http://args.test/api/coinCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/coinCollect"
+    "http://args.test/api/coinCollect"
 );
 
 let headers = {
@@ -810,13 +910,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/coinCollect" \
+    "http://args.test/api/coinCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"coin_id":4}'
+    -d '{"coin_id":13}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/coinCollect"
+    "http://args.test/api/coinCollect"
 );
 
 let headers = {
@@ -825,7 +925,7 @@ let headers = {
 };
 
 let body = {
-    "coin_id": 4
+    "coin_id": 13
 }
 
 fetch(url, {
@@ -872,11 +972,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/rewardCollect" \
+    -G "http://args.test/api/rewardCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardCollect"
+    "http://args.test/api/rewardCollect"
 );
 
 let headers = {
@@ -909,13 +1009,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/rewardCollect" \
+    "http://args.test/api/rewardCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_id":8}'
+    -d '{"reward_id":9}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardCollect"
+    "http://args.test/api/rewardCollect"
 );
 
 let headers = {
@@ -924,7 +1024,7 @@ let headers = {
 };
 
 let body = {
-    "reward_id": 8
+    "reward_id": 9
 }
 
 fetch(url, {
@@ -971,11 +1071,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/puzzleCollect" \
+    -G "http://args.test/api/puzzleCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzleCollect"
+    "http://args.test/api/puzzleCollect"
 );
 
 let headers = {
@@ -1008,13 +1108,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/puzzleCollect" \
+    "http://args.test/api/puzzleCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_id":15,"qty":19}'
+    -d '{"puzzle_id":8,"qty":8}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzleCollect"
+    "http://args.test/api/puzzleCollect"
 );
 
 let headers = {
@@ -1023,8 +1123,8 @@ let headers = {
 };
 
 let body = {
-    "puzzle_id": 15,
-    "qty": 19
+    "puzzle_id": 8,
+    "qty": 8
 }
 
 fetch(url, {
@@ -1078,11 +1178,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/puzzlePieceCollect" \
+    -G "http://args.test/api/puzzlePieceCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzlePieceCollect"
+    "http://args.test/api/puzzlePieceCollect"
 );
 
 let headers = {
@@ -1115,13 +1215,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/puzzlePieceCollect" \
+    "http://args.test/api/puzzlePieceCollect" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_piece_id":13}'
+    -d '{"puzzle_piece_id":12}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzlePieceCollect"
+    "http://args.test/api/puzzlePieceCollect"
 );
 
 let headers = {
@@ -1130,7 +1230,7 @@ let headers = {
 };
 
 let body = {
-    "puzzle_piece_id": 13
+    "puzzle_piece_id": 12
 }
 
 fetch(url, {
@@ -1178,11 +1278,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/energyBoost" \
+    -G "http://args.test/api/energyBoost" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/energyBoost"
+    "http://args.test/api/energyBoost"
 );
 
 let headers = {
@@ -1213,13 +1313,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/energyBoost" \
+    "http://args.test/api/energyBoost" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"type":"eligendi"}'
+    -d '{"type":"quos"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/energyBoost"
+    "http://args.test/api/energyBoost"
 );
 
 let headers = {
@@ -1228,7 +1328,7 @@ let headers = {
 };
 
 let body = {
-    "type": "eligendi"
+    "type": "quos"
 }
 
 fetch(url, {
@@ -1274,11 +1374,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/rewardSell" \
+    -G "http://args.test/api/rewardSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardSell"
+    "http://args.test/api/rewardSell"
 );
 
 let headers = {
@@ -1309,13 +1409,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/rewardSell" \
+    "http://args.test/api/rewardSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_collect_id":20,"amount":17,"qty":2}'
+    -d '{"reward_collect_id":19,"amount":20,"qty":13}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardSell"
+    "http://args.test/api/rewardSell"
 );
 
 let headers = {
@@ -1324,9 +1424,9 @@ let headers = {
 };
 
 let body = {
-    "reward_collect_id": 20,
-    "amount": 17,
-    "qty": 2
+    "reward_collect_id": 19,
+    "amount": 20,
+    "qty": 13
 }
 
 fetch(url, {
@@ -1382,11 +1482,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/rewardBuy" \
+    -G "http://args.test/api/rewardBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardBuy"
+    "http://args.test/api/rewardBuy"
 );
 
 let headers = {
@@ -1417,13 +1517,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/rewardBuy" \
+    "http://args.test/api/rewardBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"reward_collect_id":8,"amount":16,"qty":3}'
+    -d '{"reward_collect_id":9,"amount":16,"qty":7}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/rewardBuy"
+    "http://args.test/api/rewardBuy"
 );
 
 let headers = {
@@ -1432,9 +1532,9 @@ let headers = {
 };
 
 let body = {
-    "reward_collect_id": 8,
+    "reward_collect_id": 9,
     "amount": 16,
-    "qty": 3
+    "qty": 7
 }
 
 fetch(url, {
@@ -1492,11 +1592,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/puzzlePieceSell" \
+    -G "http://args.test/api/puzzlePieceSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzlePieceSell"
+    "http://args.test/api/puzzlePieceSell"
 );
 
 let headers = {
@@ -1527,13 +1627,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/puzzlePieceSell" \
+    "http://args.test/api/puzzlePieceSell" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_piece_collect_id":10,"amount":117.1064,"qty":5}'
+    -d '{"puzzle_piece_collect_id":4,"amount":10.938522678,"qty":9}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzlePieceSell"
+    "http://args.test/api/puzzlePieceSell"
 );
 
 let headers = {
@@ -1542,9 +1642,9 @@ let headers = {
 };
 
 let body = {
-    "puzzle_piece_collect_id": 10,
-    "amount": 117.1064,
-    "qty": 5
+    "puzzle_piece_collect_id": 4,
+    "amount": 10.938522678,
+    "qty": 9
 }
 
 fetch(url, {
@@ -1600,11 +1700,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/puzzlePieceBuy" \
+    -G "http://args.test/api/puzzlePieceBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzlePieceBuy"
+    "http://args.test/api/puzzlePieceBuy"
 );
 
 let headers = {
@@ -1636,13 +1736,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/puzzlePieceBuy" \
+    "http://args.test/api/puzzlePieceBuy" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"puzzle_piece_sell_id":2,"qty":10}'
+    -d '{"puzzle_piece_sell_id":1,"qty":11}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/puzzlePieceBuy"
+    "http://args.test/api/puzzlePieceBuy"
 );
 
 let headers = {
@@ -1651,8 +1751,8 @@ let headers = {
 };
 
 let body = {
-    "puzzle_piece_sell_id": 2,
-    "qty": 10
+    "puzzle_piece_sell_id": 1,
+    "qty": 11
 }
 
 fetch(url, {
@@ -1706,11 +1806,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/payout" \
+    -G "http://args.test/api/payout" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/payout"
+    "http://args.test/api/payout"
 );
 
 let headers = {
@@ -1740,13 +1840,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/payout" \
+    "http://args.test/api/payout" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":197269.9778,"note":"nihil"}'
+    -d '{"amount":41064086.6331,"note":"quia"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/payout"
+    "http://args.test/api/payout"
 );
 
 let headers = {
@@ -1755,8 +1855,8 @@ let headers = {
 };
 
 let body = {
-    "amount": 197269.9778,
-    "note": "nihil"
+    "amount": 41064086.6331,
+    "note": "quia"
 }
 
 fetch(url, {
@@ -1807,11 +1907,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/topUp" \
+    -G "http://args.test/api/topUp" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/topUp"
+    "http://args.test/api/topUp"
 );
 
 let headers = {
@@ -1841,13 +1941,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/topUp" \
+    "http://args.test/api/topUp" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"amount":2771584,"note":"vel","proof_image":"quia"}'
+    -d '{"amount":13131740.99721,"note":"quas","proof_image":"optio"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/topUp"
+    "http://args.test/api/topUp"
 );
 
 let headers = {
@@ -1856,9 +1956,9 @@ let headers = {
 };
 
 let body = {
-    "amount": 2771584,
-    "note": "vel",
-    "proof_image": "quia"
+    "amount": 13131740.99721,
+    "note": "quas",
+    "proof_image": "optio"
 }
 
 fetch(url, {
@@ -1913,11 +2013,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/transfer" \
+    -G "http://args.test/api/transfer" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/transfer"
+    "http://args.test/api/transfer"
 );
 
 let headers = {
@@ -1947,13 +2047,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/transfer" \
+    "http://args.test/api/transfer" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"username":"corporis","amount":3.34,"type":"libero","note":"consequatur"}'
+    -d '{"username":"aut","amount":3945.63122626,"type":"dolore","note":"aliquid"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/transfer"
+    "http://args.test/api/transfer"
 );
 
 let headers = {
@@ -1962,10 +2062,10 @@ let headers = {
 };
 
 let body = {
-    "username": "corporis",
-    "amount": 3.34,
-    "type": "libero",
-    "note": "consequatur"
+    "username": "aut",
+    "amount": 3945.63122626,
+    "type": "dolore",
+    "note": "aliquid"
 }
 
 fetch(url, {
@@ -2028,11 +2128,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/profile" \
+    -G "http://args.test/api/profile" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/profile"
+    "http://args.test/api/profile"
 );
 
 let headers = {
@@ -2062,13 +2162,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/profile" \
+    "http://args.test/api/profile" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"molestiae","city":"non","zipcode":"dolor","phone":"doloremque","birth":"deserunt","address":"qui"}'
+    -d '{"name":"enim","city":"soluta","zipcode":"quis","phone":"ab","birth":"quod","address":"at"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/profile"
+    "http://args.test/api/profile"
 );
 
 let headers = {
@@ -2077,12 +2177,12 @@ let headers = {
 };
 
 let body = {
-    "name": "molestiae",
-    "city": "non",
-    "zipcode": "dolor",
-    "phone": "doloremque",
-    "birth": "deserunt",
-    "address": "qui"
+    "name": "enim",
+    "city": "soluta",
+    "zipcode": "quis",
+    "phone": "ab",
+    "birth": "quod",
+    "address": "at"
 }
 
 fetch(url, {
@@ -2151,13 +2251,13 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://webmaster.test/api/password" \
+    "http://args.test/api/password" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"old_password":"est","password":"magnam","password_confirmation":"quos"}'
+    -d '{"old_password":"debitis","password":"eos","password_confirmation":"facilis"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/password"
+    "http://args.test/api/password"
 );
 
 let headers = {
@@ -2166,9 +2266,9 @@ let headers = {
 };
 
 let body = {
-    "old_password": "est",
-    "password": "magnam",
-    "password_confirmation": "quos"
+    "old_password": "debitis",
+    "password": "eos",
+    "password_confirmation": "facilis"
 }
 
 fetch(url, {
@@ -2215,6 +2315,292 @@ fetch(url, {
 </tbody>
 </table>
 <!-- END_227fd7c494cbc54bc5deecfc352a82a8 -->
+<h1>Weapon</h1>
+<!-- START_053aedf5069d66796e230b9bb3fc9fb5 -->
+<h2>List Weapon Mall</h2>
+<p>list of weapon in mall</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://args.test/api/weapon" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/weapon"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "weapons": "weapons"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/weapon</code></p>
+<!-- END_053aedf5069d66796e230b9bb3fc9fb5 -->
+<!-- START_20faeab025242acc8559c3bc665a234f -->
+<h2>Weapon User</h2>
+<p>list of weapon purchase user</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://args.test/api/weaponCollect" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/weaponCollect"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "weaponCollects": "weaponCollects"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/weaponCollect</code></p>
+<!-- END_20faeab025242acc8559c3bc665a234f -->
+<!-- START_5d2199c4af88f0d817e03f18eac786f1 -->
+<h2>Weapon Buy Index</h2>
+<p>List of history purchase weapon in mall</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://args.test/api/weaponBuy" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/weaponBuy"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "weaponBuys": "weaponBuys",
+    "message": "Info validation"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/weaponBuy</code></p>
+<!-- END_5d2199c4af88f0d817e03f18eac786f1 -->
+<!-- START_194a00d0622ec1912c7a7e839fe770f1 -->
+<h2>Weapon Buy Store</h2>
+<p>store purchase weapon in mall</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://args.test/api/weaponBuy" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"weapon_id":12,"qty":20}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/weaponBuy"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "weapon_id": 12,
+    "qty": 20
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "user": "update minus coin_ttg user",
+    "weaponCollect": "update plus qty puzzleCollect",
+    "weaponBuy": "store query weaponBuy",
+    "message": "Purchase weapon"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/weaponBuy</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>weapon_id</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>qty</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_194a00d0622ec1912c7a7e839fe770f1 -->
+<!-- START_fb832036c0ddc4c7adac1ad85284c4f7 -->
+<h2>Weapon Attack Index</h2>
+<p>list of weapon attack history</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://args.test/api/weaponAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/weaponAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "weaponAttacks": "weaponAttacks"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/weaponAttack</code></p>
+<!-- END_fb832036c0ddc4c7adac1ad85284c4f7 -->
+<!-- START_255d39df3a4b51f5f67cb58fa3012eac -->
+<h2>Weapon Attack Store</h2>
+<p>Store attack antaginist with weapon</p>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://args.test/api/weaponAttack" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"weapon_collect_id":8,"qty":14,"antagonist_id":5}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://args.test/api/weaponAttack"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "weapon_collect_id": 8,
+    "qty": 14,
+    "antagonist_id": 5
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "weaponCollect": "weaponCollect",
+    "antagonist": "antagonist",
+    "weaponAttack": "weaponAttack",
+    "message": "Info validation"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/weaponAttack</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>weapon_collect_id</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>qty</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>antagonist_id</code></td>
+<td>integer</td>
+<td>required</td>
+</tr>
+</tbody>
+</table>
+<!-- END_255d39df3a4b51f5f67cb58fa3012eac -->
 <h1>general</h1>
 <!-- START_705ed5b2175448eeae215b0332dc04e3 -->
 <h2>General</h2>
@@ -2224,11 +2610,11 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://webmaster.test/api/general" \
+    -G "http://args.test/api/general" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://webmaster.test/api/general"
+    "http://args.test/api/general"
 );
 
 let headers = {

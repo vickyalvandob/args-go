@@ -31,9 +31,13 @@
                                             <form action="{{ route('admin.puzzlePiece.update', $puzzlePiece->id) }}" enctype="multipart/form-data" class="text-capitalize " method="post">
                                                 @csrf
                                                 @method('put')
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group col-md-6">
                                                     <label class="control-label mb-10">title</label>
                                                     <input type="text" value="{{ $puzzlePiece->title }}" class="form-control" name="title" placeholder="Title">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label mb-10">Qty</label>
+                                                    <input type="number" value="{{ $puzzlePiece->qty }}" class="form-control" name="qty" placeholder="qty">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="row">
@@ -143,9 +147,13 @@
                             <label class="control-label mb-10">title</label>
                             <input type="text" value="{{ $puzzle->title }}" class="form-control" name="title" placeholder="Title">
                         </div>
-                        <div class="form-group col-md-12">
-                            <label class="control-label mb-10">amount</label>
-                            <input type="text" class="form-control" name="amount" value="{{ $puzzle->amount }}" placeholder="Amount">
+                        <div class="form-group col-md-6">
+                            <label class="control-label mb-10">Claim</label>
+                            <input type="text" class="form-control" name="amount" value="{{ $puzzle->amount }}" placeholder="Amount TTG">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label mb-10">Combine</label>
+                            <input type="text" class="form-control" name="amount_combine" value="{{ $puzzle->amount_combine }}" placeholder="Amount TTG">
                         </div>
                         <div class="form-group col-md-12">
                             <label class="control-label mb-10">image</label>

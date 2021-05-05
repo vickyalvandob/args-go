@@ -59,9 +59,14 @@ Route::middleware('api')->name('api.')->group(function () {
     Route::post('/puzzlePieceBuy', 'Api\HomeController@puzzlePieceBuy_store');
 
     Route::get('/weapon', 'Api\HomeController@weapon_index');
-    Route::post('/weapon', 'Api\HomeController@weapon_store');
     Route::get('/weaponCollect', 'Api\HomeController@weaponCollect_index');
-    Route::post('/weaponCollect', 'Api\HomeController@weaponCollect_store');
+    Route::get('/weaponBuy', 'Api\HomeController@weaponBuy_index');
+    Route::post('/weaponBuy', 'Api\HomeController@weaponBuy_store');
+    Route::get('/weaponAttack', 'Api\HomeController@weaponAttack_index');
+    Route::post('/weaponAttack', 'Api\HomeController@weaponAttack_store');
+
+    Route::get('/antagonistAttack', 'Api\HomeController@antagonistAttack_index');
+    Route::post('/antagonistAttack', 'Api\HomeController@antagonistAttack_store');
 
     Route::get('/topUp', 'Api\HomeController@topUp_index');
     Route::post('/topUp', 'Api\HomeController@topUp_store');

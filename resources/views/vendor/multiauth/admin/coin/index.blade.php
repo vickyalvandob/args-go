@@ -17,11 +17,15 @@
                             <br>
                             <form action="{{ route('admin.coin.store') }}" enctype="multipart/form-data" class="text-capitalize row" method="post">
                                 @csrf
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label class="control-label mb-10">Amount</label>
                                     <input type="text" class="form-control" name="amount" placeholder="amount">
                                 </div>
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label mb-10">qty</label>
+                                    <input type="text" class="form-control" name="qty" placeholder="qty">
+                                </div>
+                                <div class="form-group col-md-4">
                                     <label class="control-label mb-10">energy</label>
                                     <input type="text" class="form-control" name="energy" placeholder="energy">
                                 </div>
@@ -54,6 +58,7 @@
                             <th class="text-center align-middle">Image</th>
                             <th class="text-center align-middle">Amount</th>
                             <th class="text-center align-middle">energy</th>
+                            <th class="text-center align-middle">qty</th>
                             <th class="text-center align-middle">Action</th>
                         </tr>
                     </thead>
@@ -71,6 +76,7 @@
                               </td>
                             <td class="text-center align-middle">{{ number_format($coin->amount , 2, ',', '.') ?? "-" }} <small>GAST</small></td>
                             <td class="text-center align-middle">{{ number_format($coin->energy) ?? "-" }} <i class="mdi mdi-flash text-warning"></i></td>
+                            <td class="text-center align-middle">{{ number_format($coin->qty) ?? "-" }}</td>
                             <td class="text-center align-middle">
                                 <a href="#"  data-toggle="modal" data-target="#edit{{ $coin->id }}" class="m-1"><i class="mdi mdi-circle-edit-outline"></i></a>
                                 <a href="#" onclick="confirm1Tag({{ $coin->id }})" class="m-1"><i class="mdi mdi-delete"></i></a>
@@ -136,6 +142,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="row justify-content-center">
+                    {{ $coins->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

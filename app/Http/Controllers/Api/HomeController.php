@@ -38,6 +38,12 @@ use App\PuzzlePieceCollectHistory;
 use App\Transfer;
 use App\EnergyBoost;
 use App\General;
+use App\WeaponBuy;
+use App\WeaponCollect;
+use App\Weapon;
+use App\WeaponAttack;
+use App\Antagonist;
+use App\AntagonistAttack;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -368,7 +374,7 @@ class HomeController extends Controller
     *
     * @bodyParam  username string required
     * @bodyParam  amount double required
-    * @bodyParam  type string enum['ARGS', 'GAST',]
+    * @bodyParam  type string enum['ARGS', 'GAST','TTG']
     * @bodyParam  note string
     *
     * @response {
@@ -400,6 +406,7 @@ class HomeController extends Controller
                             // ttg
                             auth('api')->user()->balance = auth('api')->user()->balance - $request->amount;
                             auth('api')->user()->energy = auth('api')->user()->energy - $energy;
+                            auth('api')->user()->energy_quota = auth('api')->user()->energy_quota - $energy;
                             auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - $this->general->transfer_ttg;
                             auth('api')->user()->save();
 
@@ -416,6 +423,7 @@ class HomeController extends Controller
                             $transfer->tax = $tax;
                             $transfer->ttg = $this->general->transfer_ttg;
                             $transfer->energy = $energy;
+                            $transfer->note = $request->note;
                             $transfer->save();
 
                             return response()->json([
@@ -447,6 +455,7 @@ class HomeController extends Controller
                             // ttg
                             auth('api')->user()->coin_gast = auth('api')->user()->coin_gast - $request->amount;
                             auth('api')->user()->energy = auth('api')->user()->energy - $energy;
+                            auth('api')->user()->energy_quota = auth('api')->user()->energy_quota - $energy;
                             auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - $this->general->transfer_ttg;
                             auth('api')->user()->save();
 
@@ -462,6 +471,7 @@ class HomeController extends Controller
                             $transfer->tax = $tax;
                             $transfer->ttg = $this->general->transfer_ttg;
                             $transfer->energy = $energy;
+                            $transfer->note = $request->note;
                             $transfer->save();
 
                             return response()->json([
@@ -492,6 +502,7 @@ class HomeController extends Controller
                             $tax = $request->amount * ($this->general->transfer_tax / 100);
                             // ttg
                             auth('api')->user()->energy = auth('api')->user()->energy - $energy;
+                            auth('api')->user()->energy_quota = auth('api')->user()->energy_quota - $energy;
                             auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - ($this->general->transfer_ttg + $request->amount);
                             auth('api')->user()->save();
 
@@ -507,6 +518,7 @@ class HomeController extends Controller
                             $transfer->tax = $tax;
                             $transfer->ttg = $this->general->transfer_ttg;
                             $transfer->energy = $energy;
+                            $transfer->note = $request->note;
                             $transfer->save();
 
                             return response()->json([
@@ -550,17 +562,85 @@ class HomeController extends Controller
     */
     public function collection_index()
     {
+        $coinCollectCount = coinCollect::where('user_id', auth('api')->user()->id)
+        ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+        ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+        ->count();
+
         $coin = coin::where('status','show')->inRandomOrder()->first();
-        $puzzle = puzzle::where('status','show')->inRandomOrder()->first();
-        $puzzlePiece = puzzlePiece::where('status','show')->inRandomOrder()->first();
-        $reward = reward::where('status','show')->inRandomOrder()->first();
+        if($coin->qty > $coinCollectCount){
+            if($coin == false){
+                $coin = null;
+            }
+        }else{
+            $coin = null;
+        }
+
+
+        $puzzlePieces = puzzlePiece::where('status','show')->inRandomOrder()->get();
+
+        foreach($puzzlePieces as $puzzlePieceFind){
+
+            $puzzlePieceCollectHistoryCount = puzzlePieceCollectHistory::where('puzzle_piece_id',$puzzlePieceFind->id)
+            ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+            ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+            ->count();
+
+            if($puzzlePieceFind->qty > $puzzlePieceCollectHistoryCount){
+                $puzzlePiece = $puzzlePieceFind;
+                $puzzle = puzzle::find($puzzlePieceFind->puzzle_id);
+                if($puzzle == false){
+                    $puzzle = null;
+                }
+                break;
+            }else{
+                $puzzlePiece = null;
+            }
+
+        }
+
+        $rewards = reward::where('status','show')->inRandomOrder()->get();
+
+        foreach($rewards as $rewardFind){
+
+            $rewardCollectHistoryCount = rewardCollectHistory::where('reward_id',$rewardFind->id)
+            ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+            ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+            ->count();
+
+            if($rewardFind->qty > $rewardCollectHistoryCount){
+                $reward = $rewardFind;
+                break;
+            }else{
+                $reward = null;
+            }
+
+        }
+
+        $antagonistAttackCount = antagonistAttack::where('user_id', auth('api')->user()->id)
+        ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+        ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+        ->count();
+
+        $antagonist = antagonist::where('status','show')->inRandomOrder()->first();
+        if($antagonist->qty > $antagonistAttackCount){
+            if($antagonist == false){
+                $antagonist = null;
+            }
+        }else{
+            $antagonist = null;
+        }
+
+        $weaponCollects = weaponCollect::where('user_id', auth('api')->user()->id)->where('qty','>',0)->get();
 
         return response()->json([
             'user' => auth('api')->user(),
             'coin' => $coin,
+            'weaponCollects' => $weaponCollects,
             'puzzle' => $puzzle,
             'puzzlePiece' => $puzzlePiece,
             'reward' => $reward,
+            'antagonist' => $antagonist,
             'message' => 'Get Collection'
         ], 200);
 
@@ -1534,6 +1614,316 @@ class HomeController extends Controller
 
     }
 
+
+        /**
+     *  @group  Weapon
+     *
+    *  List Weapon Mall
+    * list of weapon in mall
+    *
+    * @response {
+    *  "weapons": "weapons"
+    * }
+    */
+    public function weapon_index()
+    {
+        $weapons = weapon::orderby('id', 'desc')->paginate(5);
+        return response()->json([
+            'weapons' => $weapons,
+            'message' => 'list of weapon in mall'
+        ], 200);
+    }
+
+
+        /**
+     *  @group  Weapon
+     *
+    *  Weapon User
+    * list of weapon purchase user
+    *
+    * @response {
+    *  "weaponCollects": "weaponCollects"
+    * }
+    */
+    public function weaponCollect_index()
+    {
+        $weaponCollects = weaponCollect::orderby('id', 'desc')->where('user_id',auth('api')->user()->id)->where('qty','>',0)->paginate(5);
+        return response()->json([
+            'weaponCollects' => $weaponCollects,
+            'message' => 'list of weapon in mall'
+        ], 200);
+    }
+
+
+        /**
+     *  @group  Weapon
+     *
+    *  Weapon Attack Index
+    * list of weapon attack history
+    *
+    * @response {
+    *  "weaponAttacks": "weaponAttacks"
+    * }
+    */
+    public function weaponAttack_index()
+    {
+        $weaponAttacks = weaponAttack::orderby('id', 'desc')->where('user_id',auth('api')->user()->id)->paginate(5);
+        return response()->json([
+            'weaponAttacks' => $weaponAttacks,
+            'message' => 'list of weapon in mall'
+        ], 200);
+    }
+
+
+    /**
+     *  @group  Weapon
+     *
+    *  Weapon Attack Store
+    * Store attack antaginist with weapon
+    *
+    * @bodyParam  weapon_collect_id int required
+    * @bodyParam  qty int required
+    * @bodyParam  antagonist_id int required
+    *
+    * @response {
+    *  "weaponCollect": "weaponCollect",
+    *  "antagonist": "antagonist",
+    *  "weaponAttack": "weaponAttack",
+     *  "message": "Info validation"
+    * }
+    */
+
+    public function weaponAttack_store(Request $request)
+    {
+        $weaponCollect = weaponCollect::find($request->weapon_collect_id);
+        if($weaponCollect){
+            if($request->qty){
+                $qty = $request->qty;
+            }else{
+                $qty = 1;
+            }
+            if($weaponCollect->qty >= $qty){
+
+                $weapon = weapon::find($weaponCollect->weapon_id);
+
+                if($weapon){
+                    $antagonist = antagonist::find($request->antagonist_id);
+                    if($antagonist){
+
+                        if($weapon->antagonist_id == $antagonist->id ||$weapon->antagonist_id == null ){
+                            $weaponCollect->qty = $weaponCollect->qty - $qty;
+                            $weaponCollect->save();
+
+                            $weaponAttack = new weaponAttack;
+                            $weaponAttack->weapon_id = $weaponCollect->weapon_id;
+                            $weaponAttack->weapon_collect_id = $weaponCollect->id;
+                            $weaponAttack->antagonist_id = $antagonist->id;
+                            $weaponAttack->user_id = auth('api')->user()->id;
+                            $weaponAttack->qty = $qty;
+                            $weaponAttack->save();
+
+                            return response()->json([
+                                'weaponCollect' => $weaponCollect,
+                                'antagonist' => $antagonist,
+                                'weaponAttacks' => $weaponAttacks,
+                                'message' => $weaponCollect->weapon->title.' Attack '.$weaponAttack->antagonist->title, $weaponAttack->qty
+                            ], 200);
+
+                        }else{
+                            return response()->json([$antagonist->title.' is not able to be attacked with a '.$weapon->title], 404);
+                        }
+                    }else{
+                          return response()->json(['message' => 'Antagonist not exist'], 404);
+                    }
+                }else{
+                      return response()->json(['message' => 'Weapon not exist'], 404);
+                }
+
+            }else{
+                  return response()->json(['message' => 'Out of stock!'], 404);
+            }
+        }else{
+              return response()->json(['message' => 'Weapon Collection not exist'], 404);
+        }
+
+
+    }
+
+
+        /**
+     *  @group  Weapon
+     *
+    *  Weapon Buy Index
+    * List of history purchase weapon in mall
+    *
+    * @response {
+    *  "weaponBuys": "weaponBuys",
+     *  "message": "Info validation"
+    * }
+    */
+
+
+    public function weaponBuy_index()
+    {
+        $weaponBuys = weaponBuy::orderby('id', 'desc')->where('user_id', auth('api')->user()->id)->paginate(5);
+        return response()->json([
+            'weaponBuys' => $weaponBuys,
+            'message' => 'History List Buy Weapon'
+        ], 200);
+    }
+
+          /**
+     *  @group  Weapon
+     *
+    *  Weapon Buy Store
+      * store purchase weapon in mall
+    *
+    * @bodyParam  weapon_id int required
+    * @bodyParam  qty int required
+    *
+    * @response {
+    *  "user": "update minus coin_ttg user",
+    *  "weaponCollect": "update plus qty puzzleCollect",
+    *  "weaponBuy": "store query weaponBuy",
+     *  "message": "Purchase weapon"
+    * }
+    */
+
+    public function weaponBuy_store(Request $request)
+    {
+        $weapon = weapon::find($request->weapon_id);
+        if($weapon){
+                $amount = $weapon->amount * $request->qty;
+               if(auth('api')->user()->coin_ttg >= $amount){
+
+                auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - $amount;
+                auth('api')->user()->save();
+
+                $weaponCollect = weaponCollect::where('user_id', auth('api')->user()->id)->where('weapon_id', $weapon->id)->first();
+                if($weaponCollect){
+                    $weaponCollect->qty = $weaponCollect->qty + $request->qty;
+                    $weaponCollect->save();
+                }else{
+                    $weaponCollect = new weaponCollect;
+                    $weaponCollect->user_id = auth('api')->user()->id;
+                    $weaponCollect->weapon_id = $weapon->id;
+                    $weaponCollect->qty = $request->qty;
+                    $weaponCollect->save();
+                }
+
+                $weaponBuy = new weaponBuy;
+                $weaponBuy->weapon_id = $weapon->weapon_id;
+                $weaponBuy->weapon_collect_id = $weaponCollect->id;
+                $weaponBuy->user_id = auth('api')->user()->id;
+                $weaponBuy->weapon_id = $weapon->id;
+                $weaponBuy->qty = $request->qty;
+                $weaponBuy->amount = $weapon->amount;
+                $weaponBuy->save();
+
+                return response()->json([
+                    'user' => auth('api')->user(),
+                    'weaponCollect' => $weaponCollect,
+                    'weaponBuy' => $weaponBuy,
+                    'message' => 'Purchase weapon'
+                ], 200);
+
+               }else{
+                  return response()->json(['message' => 'TTG Balance not enough'], 404);
+                }
+
+
+        }else{
+              return response()->json(['message' => 'weapon not exist'], 404);
+        }
+
+
+    }
+
+    /**
+     *  @group  Antagonist
+     *
+    *  Antagonist Attack Index
+    * List of history antagonist attack
+    *
+    * @response {
+    *  "antagonistAttacks": "antagonistAttacks",
+     *  "message": "Info validation"
+    * }
+    */
+
+    public function antagonistAttack_index()
+    {
+        $antagonistAttacks = antagonistAttack::orderby('id', 'desc')->where('user_id',auth('api')->user()->id)->get(5);
+        return response()->json([
+            'antagonistAttacks' => $antagonistAttacks,
+            'message' => "Info validation"
+        ], 200);
+
+    }
+
+
+    /**
+     *  @group  Antagonist
+     *
+    * Antagonist Attack
+    * user minus energy when antagonist attack
+    *
+    * @bodyParam  antagonist_id int required
+    *
+    * @response {
+    *  "user": "update coin_ttg user",
+    *  "antagonist": "antagonist",
+    *  "antagonistAttack": "store query antagonistAttack",
+     *  "message": "Successfully"
+    * }
+    */
+    public function antagonistAttack_store(Request $request)
+    {
+        $antagonist = antagonist::find($request->antagonist_id);
+
+        if($antagonist){
+           if(auth('api')->user()->energy >= 1){
+            if(auth('api')->user()->energy >= $antagonist->energy){
+
+                auth('api')->user()->energy = auth('api')->user()->energy - $antagonist->energy;
+            auth('api')->user()->save();
+
+            $antagonistAttack = new antagonistAttack;
+            $antagonistAttack->antagonist_id = $antagonist->id;
+            $antagonistAttack->user_id = auth('api')->user()->id;
+            $antagonistAttack->energy = $antagonist->energy;
+            $antagonistAttack->save();
+
+            return response()->json([
+                'user' => auth('api')->user(),
+                'antagonistAttack' => $antagonistAttack,
+                'antagonist' => $antagonist,
+                'message' => $antagonist->title.' Attack ', $antagonistAttack->energy
+            ], 200);
+
+
+            }else{
+
+
+                $antagonistAttack = new antagonistAttack;
+                $antagonistAttack->antagonist_id = $antagonist->id;
+                $antagonistAttack->user_id = auth('api')->user()->id;
+                $antagonistAttack->energy = auth('api')->user()->energy;
+                $antagonistAttack->save();
+
+                auth('api')->user()->energy = 0;
+                auth('api')->user()->save();
+
+                  return response()->json(['message' => 'Energy has run out!'], 404);
+            }
+
+           }else{
+              return response()->json(['message' => 'Energy is blank!'], 404);
+        }
+        }else{
+              return response()->json(['message' => 'Antagonist not exist'], 404);
+        }
+    }
 
        /**
      *

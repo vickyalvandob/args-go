@@ -26,16 +26,18 @@
                 </div>
                 <div class="col-md-6">
                     <h3>{{ $weaponCollect->qty }}</h3>
-                    <p>{{ $weaponCollect->weapon->title }}</p>
+                    <p>{{ $weaponCollect->weapon->title ?? "-" }}</p>
 
                 </div>
                </div>
-               <form action="{{ route('user.weaponAttack.store') }}" method="POST">
+              @if ($antagonist)
+              <form action="{{ route('user.weaponAttack.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="antagonist_id" value="{{ $antagonist->id }}">
                 <input type="hidden" name="weapon_collect_id" value="{{ $weaponCollect->id }}">
                 <button type="submit" class="m-1 btn btn-primary btn-rounded btn-block">Attack</button>
             </form>
+              @endif
          </div>
         @endforeach
         </div>

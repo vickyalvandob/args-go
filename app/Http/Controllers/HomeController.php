@@ -82,32 +82,74 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return Carbon::now()->subHours(1)->toDateTimeString();
 
-        $coinCollectCount = coinCollect::where('user_id',Auth::user()->id)->where('created_at', '>',Carbon::now()->subHours(1)->toDateTimeString())->count();
-        if($this->general->coin_hours >= $coinCollectCount){
-            $coin = coin::where('status','show')->inRandomOrder()->first();
+        $coinCollectCount = coinCollect::where('user_id',Auth::user()->id)
+        ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+        ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+        ->count();
+
+        $coin = coin::where('status','show')->inRandomOrder()->first();
+        if($coin->qty > $coinCollectCount){
+            if($coin == false){
+                $coin = null;
+            }
         }else{
             $coin = null;
         }
 
 
-        $puzzlePieceCollectCount = puzzlePieceCollect::where('created_at', '>',Carbon::now()->subHours(1)->toDateTimeString())->count();
-        if($this->general->puzzlePiece_hours >= $puzzlePieceCollectCount){
-            $puzzlePiece = puzzlePiece::where('status','show')->inRandomOrder()->first();
-        }else{
-            $puzzlePiece = null;
+        $puzzlePieces = puzzlePiece::where('status','show')->inRandomOrder()->get();
+
+        foreach($puzzlePieces as $puzzlePieceFind){
+
+            $puzzlePieceCollectHistoryCount = puzzlePieceCollectHistory::where('puzzle_piece_id',$puzzlePieceFind->id)
+            ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+            ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+            ->count();
+
+            if($puzzlePieceFind->qty > $puzzlePieceCollectHistoryCount){
+                $puzzlePiece = $puzzlePieceFind;
+                break;
+            }else{
+                $puzzlePiece = null;
+            }
+
         }
 
-        $puzzlePiece = puzzlePiece::where('status','show')->inRandomOrder()->first();
-        $reward = reward::where('status','show')->inRandomOrder()->first();
-        $antagonist = antagonist::where('status','show')->inRandomOrder()->first();
-        $weaponCollects = weaponCollect::where('user_id',Auth::user()->id)->where('qty','>',0)->get();
-        $rewardCollect = rewardCollect::where('user_id',Auth::user()->id)->sum('qty');
-        $puzzleCollect = puzzleCollect::where('user_id',Auth::user()->id)->sum('qty');
-        $puzzlePieceCollect = puzzlePieceCollect::where('user_id',Auth::user()->id)->sum('qty');
+        $rewards = reward::where('status','show')->inRandomOrder()->get();
 
-        return view('user.dashboard', compact('rewardCollect','puzzleCollect','puzzlePieceCollect','coin','puzzlePiece','reward','antagonist','weaponCollects'));
+        foreach($rewards as $rewardFind){
+
+            $rewardCollectHistoryCount = rewardCollectHistory::where('reward_id',$rewardFind->id)
+            ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+            ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+            ->count();
+
+            if($rewardFind->qty > $rewardCollectHistoryCount){
+                $reward = $rewardFind;
+                break;
+            }else{
+                $reward = null;
+            }
+
+        }
+
+        $antagonistAttackCount = antagonistAttack::where('user_id',Auth::user()->id)
+        ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+        ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+        ->count();
+
+        $antagonist = antagonist::where('status','show')->inRandomOrder()->first();
+        if($antagonist->qty > $antagonistAttackCount){
+            if($antagonist == false){
+                $antagonist = null;
+            }
+        }else{
+            $antagonist = null;
+        }
+
+        $weaponCollects = weaponCollect::where('user_id',Auth::user()->id)->where('qty','>',0)->get();
+        return view('user.dashboard', compact('weaponCollects','coin','puzzlePiece','reward','antagonist'));
     }
 
     public function profile_index()
@@ -261,6 +303,7 @@ class HomeController extends Controller
                             // ttg
                             Auth::user()->balance = Auth::user()->balance - $request->amount;
                             Auth::user()->energy = Auth::user()->energy - $energy;
+                            Auth::user()->energy_quota = Auth::user()->energy_quota - $energy;
                             Auth::user()->coin_ttg = Auth::user()->coin_ttg - $this->general->transfer_ttg;
                             Auth::user()->save();
 
@@ -304,6 +347,7 @@ class HomeController extends Controller
                             // ttg
                             Auth::user()->coin_gast = Auth::user()->coin_gast - $request->amount;
                             Auth::user()->energy = Auth::user()->energy - $energy;
+                            Auth::user()->energy_quota = Auth::user()->energy_quota - $energy;
                             Auth::user()->coin_ttg = Auth::user()->coin_ttg - $this->general->transfer_ttg;
                             Auth::user()->save();
 
@@ -345,6 +389,7 @@ class HomeController extends Controller
                             $tax = $request->amount * ($this->general->transfer_tax / 100);
                             // ttg
                             Auth::user()->energy = Auth::user()->energy - $energy;
+                            Auth::user()->energy_quota = Auth::user()->energy_quota - $energy;
                             Auth::user()->coin_ttg = Auth::user()->coin_ttg - ($this->general->transfer_ttg + $request->amount);
                             Auth::user()->save();
 
@@ -624,8 +669,9 @@ class HomeController extends Controller
 
     public function rewardClaim_index()
     {
-        $rewardClaims = rewardClaim::orderby('id', 'desc')->where('user_id',Auth::user()->id)->paginate(5);
-        return view('user.rewardClaim.index', compact('rewardClaims'));
+        $rewardCollects = rewardCollect::where('qty', '>', 0)->where('user_id',Auth::user()->id)->get();
+        $rewardClaims = rewardClaim::orderby('id', 'desc')->where('user_id',Auth::user()->id)->get();
+        return view('user.rewardClaim.index', compact('rewardClaims','rewardCollects'));
     }
 
 
@@ -693,7 +739,7 @@ class HomeController extends Controller
 
             if(count($puzzlePieceCollects) >= $puzzle->pieces){
 
-                if(Auth::user()->coin_ttg >= $puzzle->amount){
+                if(Auth::user()->coin_ttg >= $puzzle->amount_combine){
 
 
                     foreach($puzzlePieceCollects as $puzzlePieceCollect){
@@ -701,7 +747,7 @@ class HomeController extends Controller
                         $puzzlePieceCollect->save();
                     }
 
-                    $amount = $puzzle->amount * $request->qty;
+                    $amount = $puzzle->amount_combine * $request->qty;
 
                     Auth::user()->coin_ttg = Auth::user()->coin_ttg - $amount;
                     Auth::user()->save();
@@ -895,8 +941,10 @@ class HomeController extends Controller
 
     public function puzzleClaim_index()
     {
-        $puzzleClaims = puzzleClaim::orderby('id', 'desc')->where('user_id',Auth::user()->id)->paginate(5);
-        return view('user.puzzleClaim.index', compact('puzzleClaims'));
+        $puzzlePieceCollect = puzzlePieceCollect::where('user_id',Auth::user()->id)->sum('qty');
+        $puzzleCollects = puzzleCollect::where('qty', '>', 0)->where('user_id',Auth::user()->id)->get();
+        $puzzleClaims = puzzleClaim::orderby('id', 'desc')->where('user_id',Auth::user()->id)->get();
+        return view('user.puzzleClaim.index', compact('puzzleClaims','puzzleCollects','puzzlePieceCollect'));
     }
 
     public function puzzleClaim_store(Request $request)
@@ -1016,7 +1064,7 @@ class HomeController extends Controller
 
     public function weaponBuy_index()
     {
-        $weaponBuys = weaponBuy::orderby('id', 'desc')->paginate(5);
+        $weaponBuys = weaponBuy::orderby('id', 'desc')->where('user_id', Auth::user()->id)->paginate(5);
         return view('user.weaponBuy.index', compact('weaponBuys'));
     }
 

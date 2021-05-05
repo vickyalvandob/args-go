@@ -123,6 +123,7 @@ class PuzzleController extends Controller
         $puzzle = puzzle::find($id);
         $puzzle->title = $request->title;
         $puzzle->amount = $request->amount;
+        $puzzle->amount_combine = $request->amount_combine;
         if($request->file('image')){
             $image = $request->file('image');
             $imagetitle = time().'puzzle.'.$image->getClientOriginalExtension();

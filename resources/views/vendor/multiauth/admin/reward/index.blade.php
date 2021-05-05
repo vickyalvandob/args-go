@@ -15,9 +15,13 @@
                         <div class="modal-body">
                             <form action="{{ route('admin.reward.store') }}" enctype="multipart/form-data" class="text-capitalize row" method="post">
                                 @csrf
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label class="control-label mb-10">title</label>
                                     <input type="text" class="form-control" name="title" placeholder="title">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label mb-10">Qty</label>
+                                    <input type="text" class="form-control" name="qty" placeholder="qty">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label mb-10">Amount</label>
@@ -87,9 +91,13 @@
                                         @csrf
                                         @method('put')
                                          <div class="row text-capitalize">
-                                            <div class="form-group col-md-12">
+                                            <div class="form-group col-md-6">
                                                 <label class="control-label mb-10">title</label>
                                                 <input type="text" class="form-control" name="title" value="{{ $reward->title }}" placeholder="title">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label mb-10">Qty</label>
+                                                <input type="text" class="form-control" name="qty" value="{{ $reward->qty }}" placeholder="qty">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="control-label mb-10">Amount</label>
@@ -129,6 +137,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="row justify-content-center">
+                {{ $rewards->links('pagination::bootstrap-4') }}
+            </div>
            </div>
 
         </div>

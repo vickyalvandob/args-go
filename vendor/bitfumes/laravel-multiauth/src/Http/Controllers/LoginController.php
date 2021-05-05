@@ -42,6 +42,18 @@ class LoginController extends Controller
         return redirect($this->redirectPath());
     }
 
+
+
+      /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'name';
+    }
+
     /**
      * Show the application's login form.
      *
@@ -100,7 +112,7 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            'email'    => 'required|string',
+            'name'    => 'required|string',
             'password' => 'required|string',
         ]);
     }

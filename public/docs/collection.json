@@ -2,11 +2,73 @@
     "variables": [],
     "info": {
         "name": "ARGS API",
-        "_postman_id": "be5d1e33-9733-4801-b426-1d6abc9948bd",
+        "_postman_id": "974d6e5e-cf83-4400-aa82-cec81127d9a2",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Antagonist",
+            "description": "",
+            "item": [
+                {
+                    "name": "Antagonist Attack Index\nList of history antagonist attack",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/antagonistAttack",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Antagonist Attack\nuser minus energy when antagonist attack",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/antagonistAttack",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"antagonist_id\": 20\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
         {
             "name": "Authentication",
             "description": "",
@@ -16,7 +78,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/login",
                             "query": []
                         },
@@ -33,7 +95,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"username\": \"necessitatibus\",\n    \"password\": \"explicabo\"\n}"
+                            "raw": "{\n    \"username\": \"laboriosam\",\n    \"password\": \"et\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -44,7 +106,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/register",
                             "query": []
                         },
@@ -61,7 +123,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"name\": \"ratione\",\n    \"email\": \"quasi\",\n    \"username\": \"molestiae\",\n    \"password\": \"deserunt\",\n    \"password_confirmation\": \"minus\",\n    \"phone\": \"sit\",\n    \"zipcode\": \"modi\",\n    \"city\": \"aperiam\",\n    \"birth\": \"non\",\n    \"address\": \"blanditiis\"\n}"
+                            "raw": "{\n    \"name\": \"cumque\",\n    \"email\": \"quia\",\n    \"username\": \"reiciendis\",\n    \"password\": \"sequi\",\n    \"password_confirmation\": \"ratione\",\n    \"phone\": \"voluptatum\",\n    \"zipcode\": \"nemo\",\n    \"city\": \"fugiat\",\n    \"birth\": \"ut\",\n    \"address\": \"non\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -72,7 +134,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/logout",
                             "query": []
                         },
@@ -100,7 +162,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/refresh",
                             "query": []
                         },
@@ -134,7 +196,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/coinClaim",
                             "query": []
                         },
@@ -162,7 +224,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/coinClaim",
                             "query": []
                         },
@@ -179,7 +241,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"amount\": 399224832.75,\n    \"note\": \"sint\"\n}"
+                            "raw": "{\n    \"amount\": 4570.7288643,\n    \"note\": \"vero\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -190,7 +252,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardClaim",
                             "query": []
                         },
@@ -218,7 +280,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardClaim",
                             "query": []
                         },
@@ -235,7 +297,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"reward_collect_id\": 286159460.034761,\n    \"qty\": 3135.0164442,\n    \"recipient_name\": 5413.161127981,\n    \"recipient_phone\": 1.8338082,\n    \"recipient_address\": 2098423.47705,\n    \"note\": \"et\"\n}"
+                            "raw": "{\n    \"reward_collect_id\": 49.26,\n    \"qty\": 2569.8,\n    \"recipient_name\": 37716243.16960546,\n    \"recipient_phone\": 2646676.820948,\n    \"recipient_address\": 2.34,\n    \"note\": \"similique\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -246,7 +308,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzleClaim",
                             "query": []
                         },
@@ -263,7 +325,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"amount\": 29.3,\n    \"qty\": 20\n}"
+                            "raw": "{\n    \"amount\": 18774352.707421,\n    \"qty\": 18\n}"
                         },
                         "description": "",
                         "response": []
@@ -274,7 +336,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzleClaim",
                             "query": []
                         },
@@ -291,7 +353,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"puzzle_collect_id\": 5,\n    \"recipient_name\": \"tempora\",\n    \"recipient_phone\": \"facere\",\n    \"recipient_address\": \"laboriosam\",\n    \"note\": \"sed\",\n    \"qty\": 2\n}"
+                            "raw": "{\n    \"puzzle_collect_id\": 4,\n    \"recipient_name\": \"quaerat\",\n    \"recipient_phone\": \"qui\",\n    \"recipient_address\": \"sint\",\n    \"note\": \"fuga\",\n    \"qty\": 9\n}"
                         },
                         "description": "",
                         "response": []
@@ -308,7 +370,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/collection",
                             "query": []
                         },
@@ -336,7 +398,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/coinCollect",
                             "query": []
                         },
@@ -364,7 +426,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/coinCollect",
                             "query": []
                         },
@@ -381,7 +443,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"coin_id\": 4\n}"
+                            "raw": "{\n    \"coin_id\": 13\n}"
                         },
                         "description": "",
                         "response": []
@@ -392,7 +454,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardCollect",
                             "query": []
                         },
@@ -420,7 +482,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardCollect",
                             "query": []
                         },
@@ -437,7 +499,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"reward_id\": 8\n}"
+                            "raw": "{\n    \"reward_id\": 9\n}"
                         },
                         "description": "",
                         "response": []
@@ -448,7 +510,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzleCollect",
                             "query": []
                         },
@@ -476,7 +538,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzleCollect",
                             "query": []
                         },
@@ -493,7 +555,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"puzzle_id\": 15,\n    \"qty\": 19\n}"
+                            "raw": "{\n    \"puzzle_id\": 8,\n    \"qty\": 8\n}"
                         },
                         "description": "",
                         "response": []
@@ -504,7 +566,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzlePieceCollect",
                             "query": []
                         },
@@ -532,7 +594,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzlePieceCollect",
                             "query": []
                         },
@@ -549,7 +611,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"puzzle_piece_id\": 13\n}"
+                            "raw": "{\n    \"puzzle_piece_id\": 12\n}"
                         },
                         "description": "",
                         "response": []
@@ -566,7 +628,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/energyBoost",
                             "query": []
                         },
@@ -594,7 +656,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/energyBoost",
                             "query": []
                         },
@@ -611,7 +673,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"type\": \"eligendi\"\n}"
+                            "raw": "{\n    \"type\": \"quos\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -628,7 +690,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardSell",
                             "query": []
                         },
@@ -656,7 +718,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardSell",
                             "query": []
                         },
@@ -673,7 +735,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"reward_collect_id\": 20,\n    \"amount\": 17,\n    \"qty\": 2\n}"
+                            "raw": "{\n    \"reward_collect_id\": 19,\n    \"amount\": 20,\n    \"qty\": 13\n}"
                         },
                         "description": "",
                         "response": []
@@ -684,7 +746,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardBuy",
                             "query": []
                         },
@@ -712,7 +774,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/rewardBuy",
                             "query": []
                         },
@@ -729,7 +791,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"reward_collect_id\": 8,\n    \"amount\": 16,\n    \"qty\": 3\n}"
+                            "raw": "{\n    \"reward_collect_id\": 9,\n    \"amount\": 16,\n    \"qty\": 7\n}"
                         },
                         "description": "",
                         "response": []
@@ -740,7 +802,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzlePieceSell",
                             "query": []
                         },
@@ -768,7 +830,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzlePieceSell",
                             "query": []
                         },
@@ -785,7 +847,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"puzzle_piece_collect_id\": 10,\n    \"amount\": 117.1064,\n    \"qty\": 5\n}"
+                            "raw": "{\n    \"puzzle_piece_collect_id\": 4,\n    \"amount\": 10.938522678,\n    \"qty\": 9\n}"
                         },
                         "description": "",
                         "response": []
@@ -796,7 +858,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzlePieceBuy",
                             "query": []
                         },
@@ -824,7 +886,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/puzzlePieceBuy",
                             "query": []
                         },
@@ -841,7 +903,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"puzzle_piece_sell_id\": 2,\n    \"qty\": 10\n}"
+                            "raw": "{\n    \"puzzle_piece_sell_id\": 1,\n    \"qty\": 11\n}"
                         },
                         "description": "",
                         "response": []
@@ -858,7 +920,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/payout",
                             "query": []
                         },
@@ -886,7 +948,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/payout",
                             "query": []
                         },
@@ -903,7 +965,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"amount\": 197269.9778,\n    \"note\": \"nihil\"\n}"
+                            "raw": "{\n    \"amount\": 41064086.6331,\n    \"note\": \"quia\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -920,7 +982,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/topUp",
                             "query": []
                         },
@@ -948,7 +1010,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/topUp",
                             "query": []
                         },
@@ -965,7 +1027,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"amount\": 2771584,\n    \"note\": \"vel\",\n    \"proof_image\": \"quia\"\n}"
+                            "raw": "{\n    \"amount\": 13131740.99721,\n    \"note\": \"quas\",\n    \"proof_image\": \"optio\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -982,7 +1044,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/transfer",
                             "query": []
                         },
@@ -1010,7 +1072,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/transfer",
                             "query": []
                         },
@@ -1027,7 +1089,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"username\": \"corporis\",\n    \"amount\": 3.34,\n    \"type\": \"libero\",\n    \"note\": \"consequatur\"\n}"
+                            "raw": "{\n    \"username\": \"aut\",\n    \"amount\": 3945.63122626,\n    \"type\": \"dolore\",\n    \"note\": \"aliquid\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -1044,7 +1106,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/profile",
                             "query": []
                         },
@@ -1072,7 +1134,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/profile",
                             "query": []
                         },
@@ -1089,7 +1151,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"name\": \"molestiae\",\n    \"city\": \"non\",\n    \"zipcode\": \"dolor\",\n    \"phone\": \"doloremque\",\n    \"birth\": \"deserunt\",\n    \"address\": \"qui\"\n}"
+                            "raw": "{\n    \"name\": \"enim\",\n    \"city\": \"soluta\",\n    \"zipcode\": \"quis\",\n    \"phone\": \"ab\",\n    \"birth\": \"quod\",\n    \"address\": \"at\"\n}"
                         },
                         "description": "",
                         "response": []
@@ -1100,7 +1162,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/password",
                             "query": []
                         },
@@ -1117,7 +1179,181 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"old_password\": \"est\",\n    \"password\": \"magnam\",\n    \"password_confirmation\": \"quos\"\n}"
+                            "raw": "{\n    \"old_password\": \"debitis\",\n    \"password\": \"eos\",\n    \"password_confirmation\": \"facilis\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Weapon",
+            "description": "",
+            "item": [
+                {
+                    "name": "List Weapon Mall\nlist of weapon in mall",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/weapon",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Weapon User\nlist of weapon purchase user",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/weaponCollect",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Weapon Buy Index\nList of history purchase weapon in mall",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/weaponBuy",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Weapon Buy Store\nstore purchase weapon in mall",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/weaponBuy",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"weapon_id\": 12,\n    \"qty\": 20\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Weapon Attack Index\nlist of weapon attack history",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/weaponAttack",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Weapon Attack Store\nStore attack antaginist with weapon",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "args.test",
+                            "path": "api\/weaponAttack",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"weapon_collect_id\": 8,\n    \"qty\": 14,\n    \"antagonist_id\": 5\n}"
                         },
                         "description": "",
                         "response": []
@@ -1134,7 +1370,7 @@
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "webmaster.test",
+                            "host": "args.test",
                             "path": "api\/general",
                             "query": []
                         },

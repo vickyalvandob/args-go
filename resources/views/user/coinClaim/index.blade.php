@@ -69,7 +69,7 @@
                                 <span class="badge badge-success">{{ $coinClaim->status }}</span>
                                 @elseif ($coinClaim->status == "declined")
                                 <span class="badge badge-danger">{{ $coinClaim->status }}</span>
-                                @elseif ($coinClaim->status == "requested")
+                                @elseif ($coinClaim->status == "pending")
                                 <span class="badge badge-secondary">{{ $coinClaim->status }}</span>
                                 @else
                                 -

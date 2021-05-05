@@ -75,6 +75,7 @@ class PuzzlePieceController extends Controller
 
         $puzzlePiece = puzzlePiece::find($id);
         $puzzlePiece->title = $request->title;
+        $puzzlePiece->qty = $request->qty;
         $puzzlePiece->energy = $request->energy;
         if($request->file('image')){
             $image = $request->file('image');

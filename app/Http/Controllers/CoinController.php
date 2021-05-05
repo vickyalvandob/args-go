@@ -64,6 +64,7 @@ class CoinController extends Controller
 
         $coin = new coin;
         $coin->amount = $request->amount;
+        $coin->qty = $request->qty;
         $coin->energy = $request->energy;
         if($request->file('image')){
             $image = $request->file('image');
@@ -114,6 +115,7 @@ class CoinController extends Controller
         ]);
 
         $coin = coin::find($id);
+        $coin->qty = $request->qty;
         $coin->amount = $request->amount;
         $coin->energy = $request->energy;
         if($request->file('image')){
