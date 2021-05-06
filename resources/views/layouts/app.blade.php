@@ -145,7 +145,6 @@
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
 
- <!-- Initialize Swiper -->
         @stack('js')
         @yield('script')
 

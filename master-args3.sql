@@ -11,6 +11,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+
+-- Dumping database structure for args
+CREATE DATABASE IF NOT EXISTS `args` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `args`;
+
 -- Dumping structure for table args.admins
 CREATE TABLE IF NOT EXISTS `admins` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,

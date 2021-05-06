@@ -1,3 +1,6 @@
+$(document).on('submit', 'form', function() {
+    $(this).find('button:submit, input:submit').attr('disabled', 'disabled');
+});
 
 
   $(document).ready(function(){
@@ -7,7 +10,7 @@
         $('#datatable1').DataTable({
             keys: true
         });
-        
+
         $('#datatable2').DataTable({
             keys: true
         });
@@ -20,7 +23,7 @@
         $('#datatable5').DataTable({
             keys: true
         });
-        
+
         $('#datatable6').DataTable({
             keys: true
         });

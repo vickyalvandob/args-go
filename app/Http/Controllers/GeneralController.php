@@ -55,7 +55,10 @@ class GeneralController extends Controller
         $general->topUp_tax = $request->topUp_tax;
         $general->energy_exchange = $request->energy_exchange;
         $general->boost_percentage = $request->boost_percentage;
-        $general->collection_hour = $request->collection_hour;
+        $general->coin_minutes = $request->coin_minutes;
+        $general->reward_minutes = $request->reward_minutes;
+        $general->puzzle_minutes = $request->puzzle_minutes;
+        $general->antagonist_minutes = $request->antagonist_minutes;
         if($request->file('logo_light')){
             $logo_light = $request->file('logo_light');
             $logo_lighttitle = time().'logo_light.'.$logo_light->getClientOriginalExtension();

@@ -1,13 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
-<div class="row">
-    <div class="col-md-4">
+<div id="accordianId" role="tablist" aria-multiselectable="true">
+    <a data-toggle="collapse" class="btn btn-primary mb-3" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
+        <i class="mdi mdi-plus-circle"></i> TRANSFER
+      </a>
+    <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId">
         <div class="card-box">
-            <h4 class="header-title">
-            Transfer
-            </h4>
-            <br>
             <form action="{{ route('user.transfer.store') }}" enctype="multipart/form-data" class="text-capitalize row" method="post">
                 @csrf
                 <div class="form-group col-md-12">
@@ -40,45 +38,97 @@
                     <button class="btn btn-primary btn-block" type="submit">Submit</button>
                 </div>
             </form>
+
         </div>
     </div>
-    <div class="col-md-8">
+</div>
+
+
+<div class="row">
+
+
+    <div class="col-md-6">
         <div class="card-box">
-            <h4 class="header-title">
-                History
-            </h4>
+            Transfer
             <br>
-            <div class="table-responsive">
-                <table class="table table-borderless table-striped">
-                    <thead class="text-uppercase">
+            <table id="datatable1" class="table table-borderless table-striped dt-responsive nowrap">
+                <thead class="text-uppercase">
                     <tr>
                         <th class="text-center align-middle">Date/Time</th>
                         <th class="text-center align-middle">Username</th>
                         <th class="text-center align-middle">Amount</th>
-                        <th class="text-center align-middle">Energy</th>
-                        <th class="text-center align-middle">Tax </th>
+                        <th class="text-center align-middle">Tax</th>
                         <th class="text-center align-middle">Charge</th>
-                        <th class="text-center align-middle">Note</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transfers as $transfer)
-                        <tr>
-                            <td class="text-center align-middle">{{ $transfer->created_at->format("H:i, d F Y") ?? "-" }}</td>
-                            <td class="text-center align-middle">{{ $transfer->recipient->username ?? "-" }}</td>
-                            <td class="text-center align-middle">{{ number_format($transfer->amount , 2, ',', '.') ?? "-" }} <small>{{ $transfer->type ?? "-" }}</small></td>
-                            <td class="text-center align-middle">{{ number_format($transfer->energy) ?? "-" }}</td>
-                            <td class="text-center align-middle">{{ number_format($transfer->tax , 2, ',', '.') ?? "-" }}</td>
-                            <td class="text-center align-middle">{{ number_format($transfer->ttg , 2, ',', '.') ?? "-" }} <small>TTG</small></td>
-                            <td class="text-center align-middle">{{ $transfer->note ?? "-" }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($transfers as $transfer)
+                    <tr>
+
+                        <td class="text-center aligh-middle">{{ $transfer->created_at->format("H:i, d F Y") }}</td>
+                        <td class="text-center align-middle">
+                            {{ $transfer->user->username ?? '-' }}
+                        </td>
+                        <td class="text-center align-middle">{{ number_format($transfer->amount, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $transfer->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">{{ number_format($transfer->tax, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $transfer->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">
+                            @if ($transfer->energy > 0)
+                            <span class="d-block">{{ number_format($transfer->energy, 2, ',', '.') ?? "-" }}<small class="ml-1"><i class="mdi mdi-flash text-warning"></i></small></span>
+                            @endif
+                            @if ($transfer->ttg > 0)
+                           <span class="d-block"> {{ number_format($transfer->ttg, 2, ',', '.') ?? "-" }}<small class="ml-1">TTG</small></span>
+                            @endif
+                        </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-box">
+            Receive
+            <br>
+
+            <table id="datatable2" class="table table-borderless table-striped dt-responsive nowrap">
+                <thead>
+                    <tr class="text-uppercase">
+                        <th class="text-center align-middle">Date/Time</th>
+                        <th class="text-center align-middle">Username</th>
+                        <th class="text-center align-middle">Amount</th>
+                        <th class="text-center align-middle">Tax</th>
+                        <th class="text-center align-middle">Charge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($recipients as $recipient)
+                    <tr>
+
+                        <td class="text-center aligh-middle">{{ $recipient->created_at->format("H:i, d F Y") }}</td>
+                        <td class="text-center align-middle">
+                            {{ $recipient->recipient->username ?? '-' }}
+                        </td>
+                        <td class="text-center align-middle">{{ number_format($recipient->amount, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $recipient->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">{{ number_format($recipient->tax, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $recipient->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">
+                            @if ($recipient->energy > 0)
+                            <span class="d-block">{{ number_format($recipient->energy, 2, ',', '.') ?? "-" }}<small class="ml-1"><i class="mdi mdi-flash text-warning"></i></small></span>
+                            @endif
+                            @if ($recipient->ttg > 0)
+                           <span class="d-block"> {{ number_format($recipient->ttg, 2, ',', '.') ?? "-" }}<small class="ml-1">TTG</small></span>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
+
+
 @endsection
 
 @push('js')

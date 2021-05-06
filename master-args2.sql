@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 
 -- Dumping data for table args.admins: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-REPLACE INTO `admins` (`id`, `name`, `email`, `password`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `admins` (`id`, `name`, `email`, `password`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'admin', 'super@admin.com', '$2y$10$yNo1myoMmwHFK/ghQEX6/./Xch1DHWITtdAh3pwmTlUs2YmZoO5dm', 1, NULL, '2020-11-15 12:07:53', '2020-11-15 12:07:53');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `admin_role` (
 
 -- Dumping data for table args.admin_role: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admin_role` DISABLE KEYS */;
-REPLACE INTO `admin_role` (`id`, `role_id`, `admin_id`) VALUES
+INSERT INTO `admin_role` (`id`, `role_id`, `admin_id`) VALUES
 	(1, 1, 1);
 /*!40000 ALTER TABLE `admin_role` ENABLE KEYS */;
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `antagonists` (
 
 -- Dumping data for table args.antagonists: ~3 rows (approximately)
 /*!40000 ALTER TABLE `antagonists` DISABLE KEYS */;
-REPLACE INTO `antagonists` (`id`, `title`, `image`, `amount`, `energy`, `qty`, `description`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `antagonists` (`id`, `title`, `image`, `amount`, `energy`, `qty`, `description`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 'Robokit', '1619943337antagonist.svg', 3.00, 100.00, 2, NULL, 'show', '2021-05-02 15:02:06', '2021-05-02 15:50:04'),
 	(2, 'Alience', '1619942534antagonist.svg', 3.00, 500.00, 2, NULL, 'show', '2021-05-02 15:02:14', '2021-05-02 15:50:10'),
 	(3, 'Megatron', '1619943482antagonist.svg', 5.00, 1000.00, 2, NULL, 'show', '2021-05-02 15:03:51', '2021-05-02 15:50:24');
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `coins` (
 
 -- Dumping data for table args.coins: ~14 rows (approximately)
 /*!40000 ALTER TABLE `coins` DISABLE KEYS */;
-REPLACE INTO `coins` (`id`, `image`, `amount`, `energy`, `qty`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `coins` (`id`, `image`, `amount`, `energy`, `qty`, `status`, `created_at`, `updated_at`) VALUES
 	(1, '1620051646image.png', 0.01, 1.00, 2, 'show', '2021-05-04 10:00:40', '2021-05-03 21:20:46'),
 	(2, 'coingast2.svg', 0.02, 2.00, 2, 'show', '2021-04-25 17:44:44', '2021-04-25 17:44:44'),
 	(3, 'coingast3.svg', 0.03, 3.00, 2, 'show', '2021-04-25 17:44:50', '2021-04-25 17:47:54'),
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `generals` (
 
 -- Dumping data for table args.generals: ~1 rows (approximately)
 /*!40000 ALTER TABLE `generals` DISABLE KEYS */;
-REPLACE INTO `generals` (`id`, `title`, `social`, `description`, `favicon`, `logo_sm`, `logo_light`, `logo_dark`, `coin_gast`, `coin_ttg`, `coin_args`, `transfer_tax`, `transfer_ttg`, `topUp_tax`, `payout_tax`, `energy_exchange`, `energy_exchange_coin_gast`, `boost_percentage`, `collection_hour`, `created_at`, `updated_at`) VALUES
+INSERT INTO `generals` (`id`, `title`, `social`, `description`, `favicon`, `logo_sm`, `logo_light`, `logo_dark`, `coin_gast`, `coin_ttg`, `coin_args`, `transfer_tax`, `transfer_ttg`, `topUp_tax`, `payout_tax`, `energy_exchange`, `energy_exchange_coin_gast`, `boost_percentage`, `collection_hour`, `created_at`, `updated_at`) VALUES
 	(1, 'ARGS', 'https://api.whatsapp.com/send/?phone=62', NULL, NULL, '1620051452logo_sm.png', '1619462486logo_light.png', '1620055627logo_dark.svg', 'coin_gast.svg', '1620051590coin_ttg.png', '1620051535coin_args.png', 0.00, 0.10, 0.00, 0.00, 10.00, 0.00, 1.00, 1, '2020-11-15 19:08:50', '2021-05-03 22:27:07');
 /*!40000 ALTER TABLE `generals` ENABLE KEYS */;
 
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 
 -- Dumping data for table args.migrations: ~37 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_resets_table', 1),
 	(3, '2017_03_06_023521_create_admins_table', 1),
@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 
 -- Dumping data for table args.permissions: ~8 rows (approximately)
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-REPLACE INTO `permissions` (`id`, `name`, `parent`, `created_at`, `updated_at`) VALUES
+INSERT INTO `permissions` (`id`, `name`, `parent`, `created_at`, `updated_at`) VALUES
 	(1, 'CreateAdmin', 'Admin', '2020-11-15 12:07:53', '2020-11-15 12:07:53'),
 	(2, 'CreateRole', 'Role', '2020-11-15 12:07:53', '2020-11-15 12:07:53'),
 	(3, 'ReadAdmin', 'Admin', '2020-11-15 12:07:53', '2020-11-15 12:07:53'),
@@ -324,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `permission_role` (
 
 -- Dumping data for table args.permission_role: ~8 rows (approximately)
 /*!40000 ALTER TABLE `permission_role` DISABLE KEYS */;
-REPLACE INTO `permission_role` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `permission_role` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, NULL, NULL),
 	(2, 1, 2, NULL, NULL),
 	(3, 1, 3, NULL, NULL),
@@ -352,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `puzzles` (
 
 -- Dumping data for table args.puzzles: ~2 rows (approximately)
 /*!40000 ALTER TABLE `puzzles` DISABLE KEYS */;
-REPLACE INTO `puzzles` (`id`, `title`, `image`, `amount`, `amount_combine`, `energy`, `pieces`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `puzzles` (`id`, `title`, `image`, `amount`, `amount_combine`, `energy`, `pieces`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 'Puzzle 1', 'full.svg', 10.00, 3.00, 1.00, 12, '', '2021-04-25 18:05:26', '2021-05-05 18:18:43'),
 	(2, 'Puzle Two', 'piecetwo.svg', 1.00, 5.00, 5.00, 16, 'show', '2021-04-26 22:39:55', '2021-04-27 02:37:24');
 /*!40000 ALTER TABLE `puzzles` ENABLE KEYS */;
@@ -431,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `puzzle_pieces` (
 
 -- Dumping data for table args.puzzle_pieces: ~28 rows (approximately)
 /*!40000 ALTER TABLE `puzzle_pieces` DISABLE KEYS */;
-REPLACE INTO `puzzle_pieces` (`id`, `puzzle_id`, `position`, `title`, `image`, `amount`, `energy`, `qty`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `puzzle_pieces` (`id`, `puzzle_id`, `position`, `title`, `image`, `amount`, `energy`, `qty`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, 'Piece #1', '1.svg', 2.00, 4.00, 2, 'show', '2021-04-25 18:38:33', '2021-04-25 18:38:33'),
 	(2, 1, 2, 'Piece #2', '2.svg', 2.00, 4.00, 2, 'show', '2021-04-25 18:38:33', '2021-04-25 18:38:33'),
 	(3, 1, 3, 'Piece #3', '3.svg', 2.00, 4.00, 2, 'show', '2021-04-25 18:38:33', '2021-04-25 18:38:33'),
@@ -550,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `rewards` (
 
 -- Dumping data for table args.rewards: ~2 rows (approximately)
 /*!40000 ALTER TABLE `rewards` DISABLE KEYS */;
-REPLACE INTO `rewards` (`id`, `title`, `image`, `amount`, `energy`, `qty`, `description`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `rewards` (`id`, `title`, `image`, `amount`, `energy`, `qty`, `description`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 'Mercedes Benz', '1619463063reward.webp', 50000.00, 10.00, 2, NULL, 'show', '2021-04-25 17:57:06', '2021-04-27 01:51:09'),
 	(2, 'Ninja Kawasaki', '1619463035reward.jpg', 100.00, 5.00, 2, NULL, 'show', '2021-04-25 17:58:32', '2021-04-27 01:50:35');
 /*!40000 ALTER TABLE `rewards` ENABLE KEYS */;
@@ -660,7 +660,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 -- Dumping data for table args.roles: ~1 rows (approximately)
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-REPLACE INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
+INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 	(1, 'super', '2020-11-15 12:07:53', '2020-11-15 12:07:53');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
@@ -735,7 +735,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Dumping data for table args.users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-REPLACE INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `image`, `address`, `city`, `country`, `zipcode`, `phone`, `birth`, `balance`, `coin_gast`, `coin_ttg`, `energy`, `energy_quota`, `remember_token`, `google_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `image`, `address`, `city`, `country`, `zipcode`, `phone`, `birth`, `balance`, `coin_gast`, `coin_ttg`, `energy`, `energy_quota`, `remember_token`, `google_id`, `created_at`, `updated_at`) VALUES
 	(1, 'user', 'user', 'user@gmail.com', NULL, '$2y$10$SK10IcF6r9G3uM3vxbe7AeL/kSxXh0fcqD9XbPIy4Opv.skjlFZ4y', 'default.png', NULL, 'Aceh Jaya', NULL, NULL, NULL, NULL, 1078.00, 1094.68, 9699740.86, 95.00, 1900.00, NULL, NULL, '2021-04-24 06:19:21', '2021-05-05 19:15:10'),
 	(2, 'user2', 'user2', 'user2@gmail.com', NULL, '$2y$10$SK10IcF6r9G3uM3vxbe7AeL/kSxXh0fcqD9XbPIy4Opv.skjlFZ4y', 'default.png', NULL, NULL, NULL, NULL, NULL, NULL, 1010.00, 1001.00, 10000001.00, 1188.00, 1100.00, NULL, NULL, '2021-05-01 08:26:28', '2021-05-05 19:15:10');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
@@ -755,7 +755,7 @@ CREATE TABLE IF NOT EXISTS `weapons` (
 
 -- Dumping data for table args.weapons: ~2 rows (approximately)
 /*!40000 ALTER TABLE `weapons` DISABLE KEYS */;
-REPLACE INTO `weapons` (`id`, `antagonist_id`, `title`, `image`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `weapons` (`id`, `antagonist_id`, `title`, `image`, `amount`, `status`, `created_at`, `updated_at`) VALUES
 	(2, NULL, 'Riffle', '1619943225weapon.svg', 50.00, 'show', '2021-05-02 14:55:13', '2021-05-02 15:13:45'),
 	(3, 1, 'Gun', '1619943238weapon.svg', 10.00, 'hide', '2021-05-02 15:12:19', '2021-05-04 16:58:32');
 /*!40000 ALTER TABLE `weapons` ENABLE KEYS */;

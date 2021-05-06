@@ -25,35 +25,10 @@ class TransferController extends Controller
      */
     public function index(Request $request)
     {
-        $transfers_user = Transfer::WhereNull('admin_id')->with('user', 'recipient')->orderBy('id', 'desc')
-        ->whereHas('user', function ($query) use ($request) {
-            if ($request->q) {
-                $query->where('username', 'LIKE', "%{$request->q}%");
-            }
-        })->orWhereHas('recipient', function ($query) use ($request) {
-            if ($request->q) {
-                $query->where('username', 'LIKE', "%{$request->q}%");
-            }
-        })->paginate(10, ['*'], 'no-admin');
-    $transfers_user->appends($request->only('q'));
+        $transfers_user = transfer::whereNull('admin_id')->get();
+        $transfers_admin = transfer::whereNotNull('admin_id')->get();
 
-    $transfers_admin = Transfer::Where('admin_id', '<>', null)->with('user', 'recipient')->orderBy('id', 'desc')
-        ->WhereHas('user', function ($query) use ($request) {
-            if ($request->qq) {
-                $query->where('username', 'LIKE', "%{$request->qq}%");
-            }
-        })->paginate(10, ['*'], 'with-admin');
-    $transfers_admin->appends($request->only('qq'));
-
-    if ($request->ajax()) {
-        if ($request->only('no-admin')) {
-            return view('multiauth::admin.transfer.table_user', ['transfers_user' => $transfers_user])->render();
-        }
-        if ($request->only('with-admin')) {
-            return view('multiauth::admin.transfer.table_admin', ['transfers_admin' => $transfers_admin])->render();
-        }
-    }
-    return view('multiauth::admin.transfer.index', compact('transfers_user', 'transfers_admin'));
+        return view('multiauth::admin.transfer.index', compact('transfers_user', 'transfers_admin'));
     }
 
     /**
@@ -93,14 +68,14 @@ class TransferController extends Controller
 
             if ($request->type == 'ARGS') {
                 $user->balance = $user->balance + $request->amount;
+                $user->energy = $user->energy + $energy;
+                $user->energy_quota = $user->energy_quota + $energy;
             } elseif ($request->type == 'GAST') {
                 $user->coin_gast = $user->coin_gast + $request->amount;
             } elseif ($request->type == 'TTG') {
                 $user->coin_ttg = $user->coin_ttg + $request->amount;
             }
 
-            $user->energy = $user->energy + $energy;
-            $user->energy_quota = $user->energy_quota + $energy;
             $user->save();
 
             $transfer = new transfer;

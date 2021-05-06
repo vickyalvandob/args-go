@@ -67,9 +67,13 @@
                         <img src="{{ asset('img/icon4.svg') }}" alt="" class="img-shadow img-fluid" />
                     </div>
                 </div>
-                <div class="my-4 text-center">
-                    <a href="{{ route('login') }}" class="btn btn-primary px-5 btn-rounded"> <strong>GET IT!</strong></a>
+                <div class="form-group mb-3 text-center">
+                    <button class="btn btn-outline-light btn-block w3-round-xlarge" type="submit" style="background: none!important;" > Login </button>
                 </div>
+                <div class="form-group mb-3 text-center">
+                    <a href="{{ route('loginbygoogle') }}"class="btn btn-danger btn-block w3-round-xlarge"> <i class="mdi mdi-google"></i>  Login By Google</a><br>
+                </div>
+
             </div>
         </section>
 

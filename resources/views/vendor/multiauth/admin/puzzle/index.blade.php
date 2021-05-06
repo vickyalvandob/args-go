@@ -31,13 +31,9 @@
                                             <form action="{{ route('admin.puzzlePiece.update', $puzzlePiece->id) }}" enctype="multipart/form-data" class="text-capitalize " method="post">
                                                 @csrf
                                                 @method('put')
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-12">
                                                     <label class="control-label mb-10">title</label>
                                                     <input type="text" value="{{ $puzzlePiece->title }}" class="form-control" name="title" placeholder="Title">
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label class="control-label mb-10">Qty</label>
-                                                    <input type="number" value="{{ $puzzlePiece->qty }}" class="form-control" name="qty" placeholder="qty">
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="row">
@@ -46,18 +42,23 @@
                                                             <input type="number" min="1" value="{{ $puzzlePiece->energy }}" class="form-control" name="energy" placeholder="Qty">
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <label class="control-label mb-10">status</label>
-                                                            <select class="form-control" name="status" style="width:100%" data-toggle="select2">
-                                                                <option value="">Select</option>
-                                                                <option value="show" @if ($puzzlePiece->status == "show")
-                                                                    selected
-                                                                @endif> Show </option>
-                                                                <option value="hide" @if ($puzzlePiece->status == "hide")
-                                                                    selected
-                                                                @endif> Hide </option>
-                                                            </select>
+                                                            <label class="control-label mb-10">Qty</label>
+                                                            <input type="number" value="{{ $puzzlePiece->qty }}" class="form-control" name="qty" placeholder="qty">
+
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label class="control-label mb-10">status</label>
+                                                    <select class="form-control" name="status" style="width:100%" data-toggle="select2">
+                                                        <option value="">Select</option>
+                                                        <option value="show" @if ($puzzlePiece->status == "show")
+                                                            selected
+                                                        @endif> Show </option>
+                                                        <option value="hide" @if ($puzzlePiece->status == "hide")
+                                                            selected
+                                                        @endif> Hide </option>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label class="control-label mb-10">image</label>

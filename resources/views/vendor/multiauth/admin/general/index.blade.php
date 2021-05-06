@@ -67,22 +67,22 @@
                     <label>Description</label>
                     <textarea name="description" value="{{ $general->description }}" class="form-control" rows="4"></textarea>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label>transfer tax</label>
                     <input type="text" name="transfer_tax" placeholder="transfer tax" class="form-control" value="{{ $general->transfer_tax }}">
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label>transfer ttg</label>
                     <input type="text" name="transfer_ttg" placeholder="transfer ttg" class="form-control" value="{{ $general->transfer_ttg }}">
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label>topUp tax</label>
                     <input type="text" name="topUp_tax" placeholder="topUp tax" class="form-control" value="{{ $general->topUp_tax }}">
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label>payout tax</label>
                     <input type="text" name="payout_tax" placeholder="payout tax" class="form-control" value="{{ $general->payout_tax }}">
                 </div>
@@ -95,9 +95,21 @@
                     <label>boost percentage</label>
                     <input type="text" name="boost_percentage" placeholder="energy exchange coin" class="form-control" value="{{ $general->boost_percentage }}">
                 </div>
-                <div class="form-group col-md-4">
-                    <label>collection hour <small class="text-lowercase">/hours</small></label>
-                    <input type="text" name="collection_hour" placeholder="collection hour" class="form-control" value="{{ $general->collection_hour }}">
+                <div class="form-group col-md-3">
+                    <label>coin <small>minutes</small> </label>
+                    <input type="number" name="coin_minutes" placeholder="coin minutes" class="form-control" value="{{ $general->coin_minutes }}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Puzzle <small>minutes</small> </label>
+                    <input type="number" name="puzzle_minutes" placeholder="puzzle minutes" class="form-control" value="{{ $general->puzzle_minutes }}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>reward <small>minutes</small> </label>
+                    <input type="number" name="reward_minutes" placeholder="reward minutes" class="form-control" value="{{ $general->reward_minutes }}">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>antagonist <small>minutes</small> </label>
+                    <input type="number" name="antagonist_minutes" placeholder="antagonist minutes" class="form-control" value="{{ $general->antagonist_minutes }}">
                 </div>
                 <div class="form-group col-md-12">
                     <button class="btn btn-primary btn-block" type="submit">save changes</button>

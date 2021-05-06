@@ -183,6 +183,7 @@ class HomeController extends Controller
         $amount = $user->energy_quota * ($this->general->boost_percentage / 100);
 
         if($user->energy_quota >= ($user->energy + $amount)){
+
             $user->energy = $user->energy + $amount;
             $user->save();
 
@@ -196,6 +197,7 @@ class HomeController extends Controller
                 'user' => $user,
                 'message' => 'Successfully'
             ], 200);
+
         }else{
 
 
@@ -446,21 +448,17 @@ class HomeController extends Controller
            }elseif($request->type == 'GAST'){
                 if (auth('api')->user()->coin_gast >= $request->amount) {
 
-                    $energy = $request->amount * $this->general->energy_exchange;
-                    if (auth('api')->user()->energy >= $energy) {
 
                         if(auth('api')->user()->coin_ttg >= $this->general->transfer_ttg){
 
                             $tax = $request->amount * ($this->general->transfer_tax / 100);
                             // ttg
                             auth('api')->user()->coin_gast = auth('api')->user()->coin_gast - $request->amount;
-                            auth('api')->user()->energy = auth('api')->user()->energy - $energy;
-                            auth('api')->user()->energy_quota = auth('api')->user()->energy_quota - $energy;
+
                             auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - $this->general->transfer_ttg;
                             auth('api')->user()->save();
 
                             $recipient->coin_gast = $recipient->coin_gast + $request->amount;
-                            $recipient->energy = $recipient->energy + $energy;
                             $recipient->save();
 
                             $transfer = new transfer;
@@ -470,7 +468,6 @@ class HomeController extends Controller
                             $transfer->amount = $request->amount - $tax;
                             $transfer->tax = $tax;
                             $transfer->ttg = $this->general->transfer_ttg;
-                            $transfer->energy = $energy;
                             $transfer->note = $request->note;
                             $transfer->save();
 
@@ -484,61 +481,49 @@ class HomeController extends Controller
                         }else{
                             return response()->json(['message' => 'TTG balance not enough!'], 404);
                         }
-
-                    }else{
-                        return response()->json(['message' => 'Energy not enough!'], 404);
-                    }
                 }else{
                     return response()->json(['message' => 'GAST Balance not enough!'], 404);
                 }
             }elseif($request->type == 'TTG'){
                 if (auth('api')->user()->coin_ttg >= $request->amount) {
 
-                    $energy = $request->amount * $this->general->energy_exchange;
-                    if (auth('api')->user()->energy >= $energy) {
+                    if(auth('api')->user()->coin_ttg >= $this->general->transfer_ttg){
 
-                        if(auth('api')->user()->coin_ttg >= $this->general->transfer_ttg){
+                        $tax = $request->amount * ($this->general->transfer_tax / 100);
+                        // ttg
 
-                            $tax = $request->amount * ($this->general->transfer_tax / 100);
-                            // ttg
-                            auth('api')->user()->energy = auth('api')->user()->energy - $energy;
-                            auth('api')->user()->energy_quota = auth('api')->user()->energy_quota - $energy;
-                            auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - ($this->general->transfer_ttg + $request->amount);
-                            auth('api')->user()->save();
+                        auth('api')->user()->coin_ttg = auth('api')->user()->coin_ttg - ($this->general->transfer_ttg + $request->amount);
+                        auth('api')->user()->save();
 
-                            $recipient->coin_ttg = $recipient->coin_ttg + $request->amount;
-                            $recipient->energy = $recipient->energy + $energy;
-                            $recipient->save();
+                        $recipient->coin_ttg = $recipient->coin_ttg + $request->amount;
 
-                            $transfer = new transfer;
-                            $transfer->user_id = auth('api')->user()->id;
-                            $transfer->recipient_id = $recipient->id;
-                            $transfer->type = $request->type;
-                            $transfer->amount = $request->amount - $tax;
-                            $transfer->tax = $tax;
-                            $transfer->ttg = $this->general->transfer_ttg;
-                            $transfer->energy = $energy;
-                            $transfer->note = $request->note;
-                            $transfer->save();
+                        $recipient->save();
 
-                            return response()->json([
-                                'user' => auth('api')->user(),
-                                'recipient' => $recipient,
-                                'transfer' => $transfer,
-                                'message' => 'Successfully'
-                            ], 200);
+                        $transfer = new transfer;
+                        $transfer->user_id = auth('api')->user()->id;
+                        $transfer->recipient_id = $recipient->id;
+                        $transfer->type = $request->type;
+                        $transfer->amount = $request->amount - $tax;
+                        $transfer->tax = $tax;
+                        $transfer->ttg = $this->general->transfer_ttg;
+                        $transfer->note = $request->note;
+                        $transfer->save();
 
-                        }else{
-                            return response()->json(['message' => 'TTG balance not enough!'], 404);
-                        }
+                        return response()->json([
+                            'user' => auth('api')->user(),
+                            'recipient' => $recipient,
+                            'transfer' => $transfer,
+                            'message' => 'Successfully'
+                        ], 200);
 
                     }else{
-                        return response()->json(['message' => 'TTG Energy not enough!'], 404);
+                        return response()->json(['message' => 'TTG balance not enough!'], 404);
                     }
+
                 }else{
-                    return response()->json(['message' => 'Balance not enough!'], 404);
+                    return response()->json(['message' => 'TTG Energy balance enough!'], 404);
                 }
-           }
+            }
         }else{
             return response()->json(['message' => 'Username not exnot exist!'], 404);
         }

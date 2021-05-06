@@ -29,10 +29,10 @@
                                 <button class="btn btn-outline-light btn-block w3-round-xlarge" type="submit" style="background: none!important;" > Login </button>
                             </div>
                             <div class="form-group mb-3 text-center">
-                                <a href="{{ route('loginbygoogle') }}"class="btn btn-outline-light btn-block w3-round-xlarge"> Login By Google</a><br>
+                                <a href="{{ route('loginbygoogle') }}"class="btn btn-danger btn-block w3-round-xlarge"> <i class="mdi mdi-google"></i>  Login By Google</a><br>
                             </div>
 
-                            
+
 
                             <div class="form-group text-center">
                                 <h5 class="txt-light mb-0">Doesn't have account ? <a href="{{ route('register') }}" class="w3-hover-text-red"><b>register</b></a></h5>

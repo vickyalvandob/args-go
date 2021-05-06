@@ -104,15 +104,19 @@
                                             @csrf
                                             @method('put')
                                              <div class="row text-capitalize">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
                                                     <label class="control-label mb-10">Amount</label>
                                                     <input type="text" class="form-control" name="amount" value="{{ $coin->amount }}" placeholder="amount">
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
                                                     <label class="control-label mb-10">energy</label>
                                                     <input type="text" class="form-control" name="energy" value="{{ $coin->energy }}" placeholder="energy">
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
+                                                    <label class="control-label mb-10">qty</label>
+                                                    <input type="text" class="form-control" name="qty" value="{{ $coin->qty }}" placeholder="qty">
+                                                </div>
+                                                <div class="form-group col-md-12">
                                                     <label>status</label>
                                                     <select class="form-control" name="status" style="width:100%" data-search="false">
                                                         <option value="">Select</option>
@@ -124,7 +128,7 @@
                                                         @endif> Hide </option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-12">
                                                     <label class="control-label mb-10">Image</label>
                                                     <input type="file" class="form-control" name="image" placeholder="image">
                                                 </div>

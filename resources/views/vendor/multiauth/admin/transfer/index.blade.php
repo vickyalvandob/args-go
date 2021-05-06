@@ -2,7 +2,6 @@
 
 @section('content')
 <div id="accordianId" role="tablist" aria-multiselectable="true">
-    <div class="">
         <a data-toggle="collapse" class="btn btn-primary mb-3" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true" aria-controls="section1ContentId">
             <i class="mdi mdi-plus-circle"></i> TRANSFER
           </a>
@@ -18,11 +17,11 @@
                     <small class="float-right text-primary my-1" id="showUser"> </small>
                     <div class="clearfix"></div>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>Amount</label>
                     <input type="text" name="amount" class="form-control" placeholder="Amount" required>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label>type</label>
                     <select name="type" required class="form-control select2">
                         <option value="">Select</option>
@@ -42,7 +41,6 @@
 
             </div>
         </div>
-    </div>
 </div>
 
 <div class="row">
@@ -51,30 +49,84 @@
     <div class="col-md-6">
         <div class="card-box">
             User
-            <div class="search-form m-2">
-                <form action="#"  method="get">
-                    <input type="text" class="form-control form-contro-sm" placeholder="Search.."  name="q" value="{{ $search ?? '' }}">
-                    <button type="submit" class="btn btn-primary btn-rounded"><i class="dripicons-search"></i></button>
-                </form>
-            </div>
+            <br>
 
-            <div class="table__user table-responsive">
-                @include('multiauth::admin.transfer.table_user')
-            </div>
+            <table id="datatable2" class="table table-borderless table-striped dt-responsive nowrap">
+                <thead>
+                    <tr class="text-uppercase">
+                        <th class="text-center align-middle">Date/Time</th>
+                        <th class="text-center align-middle">Username</th>
+                        <th class="text-center align-middle">recipient</th>
+                        <th class="text-center align-middle">Amount</th>
+                        <th class="text-center align-middle">Tax</th>
+                        <th class="text-center align-middle">Charge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($transfers_user as $transfer_user)
+                    <tr>
+
+                        <td class="text-center aligh-middle">{{ $transfer_user->created_at->format("H:i, d F Y") }}</td>
+                        <td class="text-center align-middle">
+                            {{ $transfer_user->user->username ?? '-' }}
+                        </td>
+                        <td class="text-center align-middle">
+                            {{ $transfer_user->recipient->username ?? '-' }}
+                        </td>
+                        <td class="text-center align-middle">{{ number_format($transfer_user->amount, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $transfer_user->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">{{ number_format($transfer_user->tax, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $transfer_user->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">
+                            @if ($transfer_user->energy > 0)
+                            <span class="d-block">{{ number_format($transfer_user->energy, 2, ',', '.') ?? "-" }}<small class="ml-1"><i class="mdi mdi-flash text-warning"></i></small></span>
+                            @endif
+                            @if ($transfer_user->ttg > 0)
+                           <span class="d-block"> {{ number_format($transfer_user->ttg, 2, ',', '.') ?? "-" }}<small class="ml-1">TTG</small></span>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
     </div>
     <div class="col-md-6">
         <div class="card-box">
             Admin
-            <div class="search-form m-2">
-                <form action="#"  method="get">
-                    <input type="text" class="form-control form-contro-sm" placeholder="Search.."  name="qq" value="{{ $search ?? '' }}">
-                    <button type="submit" class="btn btn-primary btn-rounded"><i class="dripicons-search"></i></button>
-                </form>
-            </div>
-            <div class="table__admin table-responsive">
-                @include('multiauth::admin.transfer.table_admin')
-            </div>
+            <br>
+            <table id="datatable1" class="table table-borderless table-striped dt-responsive nowrap">
+                <thead class="text-uppercase">
+                    <tr>
+                        <th class="text-center align-middle">Date/Time</th>
+                        <th class="text-center align-middle">Username</th>
+                        <th class="text-center align-middle">Amount</th>
+                        <th class="text-center align-middle">Tax</th>
+                        <th class="text-center align-middle">Charge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($transfers_admin as $transfer_admin)
+                    <tr>
+
+                        <td class="text-center aligh-middle">{{ $transfer_admin->created_at->format("H:i, d F Y") }}</td>
+                        <td class="text-center align-middle">
+                            {{ $transfer_admin->recipient->username ?? '-' }}
+                        </td>
+                        <td class="text-center align-middle">{{ number_format($transfer_admin->amount, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $transfer_admin->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">{{ number_format($transfer_admin->tax, 2, ',', '.') ?? "-" }}<small class="ml-1">{{ $transfer_admin->type ?? "-" }}</small></td>
+                        <td class="text-center align-middle">
+                            @if ($transfer_admin->energy > 0)
+                            <span class="d-block">{{ number_format($transfer_admin->energy, 2, ',', '.') ?? "-" }}<small class="ml-1"><i class="mdi mdi-flash text-warning"></i></small></span>
+                            @endif
+                            @if ($transfer_admin->ttg > 0)
+                           <span class="d-block"> {{ number_format($transfer_admin->ttg, 2, ',', '.') ?? "-" }}<small class="ml-1">TTG</small></span>
+                            @endif
+                        </td>
+
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

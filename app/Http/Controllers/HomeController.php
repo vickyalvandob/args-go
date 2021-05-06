@@ -77,34 +77,18 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('welcome');
+        return redirect(route('user.dashboard'));
     }
 
     public function dashboard()
     {
-
-        $coinCollectCount = coinCollect::where('user_id',Auth::user()->id)
-        ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
-        ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
-        ->count();
-
-        $coin = coin::where('status','show')->inRandomOrder()->first();
-        if($coin->qty > $coinCollectCount){
-            if($coin == false){
-                $coin = null;
-            }
-        }else{
-            $coin = null;
-        }
-
 
         $puzzlePieces = puzzlePiece::where('status','show')->inRandomOrder()->get();
 
         foreach($puzzlePieces as $puzzlePieceFind){
 
             $puzzlePieceCollectHistoryCount = puzzlePieceCollectHistory::where('puzzle_piece_id',$puzzlePieceFind->id)
-            ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
-            ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+            ->whereBetween('created_at', [now()->subMinutes($this->general->puzzle_minutes)->format('Y-m-d H:00:00'), now()->format('Y-m-d H:00:00')])
             ->count();
 
             if($puzzlePieceFind->qty > $puzzlePieceCollectHistoryCount){
@@ -117,12 +101,15 @@ class HomeController extends Controller
         }
 
         $rewards = reward::where('status','show')->inRandomOrder()->get();
-
         foreach($rewards as $rewardFind){
 
+            // $rewardCollectHistoryCount = rewardCollectHistory::where('reward_id',$rewardFind->id)
+            // ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
+            // ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_minutes)->format('Y-m-d H:00:00'))
+            // ->count();
+
             $rewardCollectHistoryCount = rewardCollectHistory::where('reward_id',$rewardFind->id)
-            ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
-            ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+            ->whereBetween('created_at', [now()->subMinutes($this->general->reward_minutes), now()])
             ->count();
 
             if($rewardFind->qty > $rewardCollectHistoryCount){
@@ -134,9 +121,23 @@ class HomeController extends Controller
 
         }
 
+        $coins = coin::where('status','show')->inRandomOrder()->get();
+
+        foreach($coins as $coinFind){
+
+            $coinCollectCount = coinCollect::where('coin_id',$coinFind->id)
+            ->whereBetween('created_at', [now()->subMinutes($this->general->coin_minutes), now()])->count();
+
+            if($coinFind->qty > $coinCollectCount){
+                $coin = $coinFind;
+                break;
+            }else{
+                $coin = null;
+            }
+        }
+
         $antagonistAttackCount = antagonistAttack::where('user_id',Auth::user()->id)
-        ->where('created_at', '>=',Carbon::now()->format('Y-m-d H:00:00'))
-        ->where('created_at', '<=',Carbon::now()->addHour($this->general->collection_hour)->format('Y-m-d H:00:00'))
+        ->whereBetween('created_at', [now()->subMinutes($this->general->antagonist_minutes), now()])
         ->count();
 
         $antagonist = antagonist::where('status','show')->inRandomOrder()->first();
@@ -253,6 +254,7 @@ class HomeController extends Controller
 
                 Auth::user()->balance = Auth::user()->balance - $request->amount;
                 Auth::user()->energy = Auth::user()->energy - $energy;
+                Auth::user()->energy_quota = Auth::user()->energy_quota - $energy;
                 Auth::user()->save();
 
                 $payout = new payout;
@@ -278,8 +280,9 @@ class HomeController extends Controller
 
     public function transfer_index()
     {
-        $transfers = transfer::orderby('id', 'desc')->where('user_id',Auth::user()->id)->paginate(5);
-        return view('user.transfer.index', compact('transfers'));
+        $transfers = transfer::orderby('id', 'desc')->where('user_id',Auth::user()->id)->get();
+        $recipients = transfer::orderby('id', 'desc')->where('recipient_id',Auth::user()->id)->get();
+        return view('user.transfer.index', compact('transfers','recipients'));
     }
 
     public function transfer_store(Request $request)
@@ -338,42 +341,33 @@ class HomeController extends Controller
            }elseif($request->type == 'GAST'){
                 if (Auth::user()->coin_gast >= $request->amount) {
 
-                    $energy = $request->amount * $this->general->energy_exchange;
-                    if (Auth::user()->energy >= $energy) {
 
-                        if(Auth::user()->coin_ttg >= $this->general->transfer_ttg){
+                    if(Auth::user()->coin_ttg >= $this->general->transfer_ttg){
 
-                            $tax = $request->amount * ($this->general->transfer_tax / 100);
-                            // ttg
-                            Auth::user()->coin_gast = Auth::user()->coin_gast - $request->amount;
-                            Auth::user()->energy = Auth::user()->energy - $energy;
-                            Auth::user()->energy_quota = Auth::user()->energy_quota - $energy;
-                            Auth::user()->coin_ttg = Auth::user()->coin_ttg - $this->general->transfer_ttg;
-                            Auth::user()->save();
+                        $tax = $request->amount * ($this->general->transfer_tax / 100);
+                        // ttg
+                        Auth::user()->coin_gast = Auth::user()->coin_gast - $request->amount;
 
-                            $recipient->coin_gast = $recipient->coin_gast + $request->amount;
-                            $recipient->energy = $recipient->energy + $energy;
-                            $recipient->save();
+                        Auth::user()->coin_ttg = Auth::user()->coin_ttg - $this->general->transfer_ttg;
+                        Auth::user()->save();
 
-                            $transfer = new transfer;
-                            $transfer->user_id = Auth::user()->id;
-                            $transfer->recipient_id = $recipient->id;
-                            $transfer->type = $request->type;
-                            $transfer->amount = $request->amount - $tax;
-                            $transfer->tax = $tax;
-                            $transfer->ttg = $this->general->transfer_ttg;
-                            $transfer->energy = $energy;
-                            $transfer->note = $request->note;
-                            $transfer->save();
+                        $recipient->coin_gast = $recipient->coin_gast + $request->amount;
+                        $recipient->save();
 
-                            alert()->success('Successfully');
+                        $transfer = new transfer;
+                        $transfer->user_id = Auth::user()->id;
+                        $transfer->recipient_id = $recipient->id;
+                        $transfer->type = $request->type;
+                        $transfer->amount = $request->amount - $tax;
+                        $transfer->tax = $tax;
+                        $transfer->ttg = $this->general->transfer_ttg;
+                        $transfer->note = $request->note;
+                        $transfer->save();
 
-                        }else{
-                            alert()->info('TTG balance not enough!');
-                        }
+                        alert()->success('Successfully');
 
                     }else{
-                        alert()->info('Energy not enough!');
+                        alert()->info('TTG balance not enough!');
                     }
                 }else{
                     alert()->info('GAST Balance not enough!');
@@ -381,20 +375,14 @@ class HomeController extends Controller
             }elseif($request->type == 'TTG'){
                 if (Auth::user()->coin_ttg >= $request->amount) {
 
-                    $energy = $request->amount * $this->general->energy_exchange;
-                    if (Auth::user()->energy >= $energy) {
-
                         if(Auth::user()->coin_ttg >= $this->general->transfer_ttg){
 
                             $tax = $request->amount * ($this->general->transfer_tax / 100);
                             // ttg
-                            Auth::user()->energy = Auth::user()->energy - $energy;
-                            Auth::user()->energy_quota = Auth::user()->energy_quota - $energy;
                             Auth::user()->coin_ttg = Auth::user()->coin_ttg - ($this->general->transfer_ttg + $request->amount);
                             Auth::user()->save();
 
                             $recipient->coin_ttg = $recipient->coin_ttg + $request->amount;
-                            $recipient->energy = $recipient->energy + $energy;
                             $recipient->save();
 
                             $transfer = new transfer;
@@ -404,7 +392,6 @@ class HomeController extends Controller
                             $transfer->amount = $request->amount - $tax;
                             $transfer->tax = $tax;
                             $transfer->ttg = $this->general->transfer_ttg;
-                            $transfer->energy = $energy;
                             $transfer->note = $request->note;
                             $transfer->save();
 
@@ -414,11 +401,9 @@ class HomeController extends Controller
                             alert()->info('TTG balance not enough!');
                         }
 
-                    }else{
-                        alert()->info('TTG Energy not enough!');
-                    }
+
                 }else{
-                    alert()->info('Balance not enough!');
+                    alert()->info('TTG Balance not enough!');
                 }
            }
         }else{
